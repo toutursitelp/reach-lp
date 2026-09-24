@@ -1,0 +1,946 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>REACH | あなたのペースで、勉強を好きになる家庭教師</title>
+<meta name="description" content="学校に行かなくても、勉強はしたい。その気持ちに本気で応える家庭教師サービスREACH。オンライン中心、都度スケジュール調整、無料体験実施中。">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@400;500;700&display=swap" rel="stylesheet">
+<style>
+  /*
+   * カラー・タイポグラフィ・角丸・シャドウ・フォーカスカラーの値は
+   * デジタル庁デザインシステム(DADS)の公開トークンを参照。
+   * ブランドカラー(ネイビー×ゴールド)は維持し、構造面のみ準拠。
+   */
+  :root {
+    --navy: #0f1b3c;
+    --navy-deep: #0a1230;
+    --navy-light: #1c2c5c;
+    --gold: #d4af37;
+    --gold-light: #f0d878;
+    --gold-soft: #f7e9b8;
+    --cream: #fffdf7;
+    --text-main: #1e2433;
+    --text-sub: #545c6e;
+
+    /* DADS: Neutral gray tokens (foundations/color) */
+    --gray-536: #767676;   /* AA本文グレー */
+    --gray-420: #949494;
+
+    /* DADS: focus indicator colors (foundations) */
+    --focus-blue: #0877d7;
+    --focus-yellow: #b78f00;
+
+    /* DADS: radius tokens */
+    --radius-8: 8px;
+    --radius-12: 12px;
+    --radius-16: 16px;
+    --radius-full: 999px;
+
+    /* DADS: shadow tokens (2層構造), ネイビー寄りに調整 */
+    --shadow-2: 0 2px 12px 2px rgba(15, 27, 60, 0.10), 0 1px 6px 0 rgba(15, 27, 60, 0.16);
+    --shadow-4: 0 6px 20px 4px rgba(15, 27, 60, 0.12), 0 2px 8px 0 rgba(15, 27, 60, 0.18);
+
+    /* 8px基準のスペーシングスケール(DADS foundations/spacing) */
+    --sp-1: 8px;
+    --sp-2: 16px;
+    --sp-3: 24px;
+    --sp-4: 32px;
+    --sp-6: 48px;
+    --sp-8: 64px;
+    --sp-11: 88px;
+  }
+
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+
+  html { scroll-behavior: smooth; }
+
+  body {
+    font-family: 'Noto Sans JP', "Hiragino Kaku Gothic ProN", "Hiragino Sans", "Yu Gothic", "Meiryo", sans-serif;
+    color: var(--text-main);
+    background: var(--cream);
+    line-height: 1.75;
+    letter-spacing: 0.02em;
+    overflow-x: hidden;
+  }
+
+  img { max-width: 100%; display: block; }
+
+  a { text-decoration: none; color: inherit; }
+
+  /* DADS: フォーカスインジケーター(キーボード操作時のみ表示) */
+  a:focus-visible,
+  button:focus-visible,
+  input:focus-visible,
+  select:focus-visible,
+  textarea:focus-visible {
+    outline: 2px solid var(--focus-blue);
+    outline-offset: 2px;
+    border-radius: 4px;
+  }
+
+  /* DADS: スキップリンク(キーボード・スクリーンリーダー利用者向け) */
+  .skip-link {
+    position: absolute;
+    left: -9999px;
+    top: 0;
+    z-index: 100;
+    background: var(--navy);
+    color: #fff;
+    padding: var(--sp-2) var(--sp-3);
+    border-radius: 0 0 8px 0;
+    font-weight: 700;
+  }
+
+  .skip-link:focus {
+    left: 0;
+  }
+
+  .container {
+    max-width: 1080px;
+    margin: 0 auto;
+    padding: 0 var(--sp-3);
+  }
+
+  /* Mobile-first base: compact section spacing, expands at larger breakpoints below */
+  section { padding: var(--sp-6) 0; }
+
+  .section-title {
+    text-align: center;
+    font-size: clamp(24px, 4.5vw, 32px);
+    font-weight: 700;
+    line-height: 1.5;
+    letter-spacing: 0.01em;
+    color: var(--navy);
+    margin-bottom: var(--sp-2);
+  }
+
+  .section-title span {
+    color: var(--gold);
+  }
+
+  .section-sub {
+    text-align: center;
+    color: var(--gray-536);
+    font-size: 15px;
+    margin-bottom: var(--sp-4);
+  }
+
+  /* ===== Hero ===== */
+  .hero {
+    position: relative;
+    min-height: 100svh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: var(--navy);
+    overflow: hidden;
+  }
+
+  .hero-bg {
+    position: absolute;
+    inset: 0;
+    background-image: url('images/hero.jpg');
+    background-size: cover;
+    background-position: center;
+    z-index: 0;
+  }
+
+  .hero-overlay {
+    position: absolute;
+    inset: 0;
+    background: linear-gradient(180deg, rgba(255,255,255,0.82) 0%, rgba(255,255,255,0.72) 45%, rgba(255,255,255,0.88) 100%);
+    z-index: 1;
+  }
+
+  .hero-content {
+    position: relative;
+    z-index: 2;
+    text-align: center;
+    padding: var(--sp-11) var(--sp-3) var(--sp-6);
+    max-width: 720px;
+  }
+
+  .hero-badge {
+    display: inline-flex;
+    align-items: center;
+    gap: var(--sp-1);
+    background: var(--navy);
+    color: var(--gold-light);
+    font-size: 12px;
+    letter-spacing: 0.12em;
+    padding: var(--sp-1) var(--sp-2);
+    border-radius: var(--radius-full);
+    margin-bottom: var(--sp-3);
+    font-weight: 700;
+    box-shadow: var(--shadow-2);
+  }
+
+  .hero-badge .dot {
+    width: 6px;
+    height: 6px;
+    background: var(--gold);
+    border-radius: 50%;
+  }
+
+  .hero-copy {
+    font-size: clamp(20px, 5.6vw, 36px);
+    font-weight: 700;
+    color: var(--navy);
+    line-height: 1.5;
+    letter-spacing: 0.01em;
+    margin-bottom: var(--sp-3);
+    text-shadow: 0 2px 18px rgba(255,255,255,0.6);
+    word-break: keep-all;
+    overflow-wrap: break-word;
+  }
+
+  .hero-copy .accent {
+    color: #b8860b;
+    background: linear-gradient(180deg, transparent 60%, var(--gold-soft) 60%);
+  }
+
+  .hero-lead {
+    font-size: 15px;
+    color: var(--gray-536);
+    margin-bottom: var(--sp-4);
+  }
+
+  .hero-cta {
+    display: inline-flex;
+    flex-wrap: wrap;
+    gap: var(--sp-2);
+    justify-content: center;
+  }
+
+  .btn {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    min-height: 48px;
+    padding: var(--sp-2) var(--sp-4);
+    border-radius: var(--radius-full);
+    font-weight: 700;
+    font-size: 16px;
+    transition: transform 0.2s ease, box-shadow 0.2s ease;
+    border: none;
+    cursor: pointer;
+  }
+
+  .btn-primary {
+    background: linear-gradient(135deg, var(--gold-light), var(--gold));
+    color: var(--navy-deep);
+    box-shadow: 0 8px 22px rgba(212, 175, 55, 0.45);
+  }
+
+  .btn-primary:hover { transform: translateY(-2px); box-shadow: 0 12px 26px rgba(212, 175, 55, 0.55); }
+
+  .btn-outline {
+    background: transparent;
+    color: var(--navy);
+    border: 1.5px solid var(--navy);
+  }
+
+  .btn-outline:hover { background: var(--navy); color: #fff; }
+
+  /* ===== Banner ===== */
+  .benefit-banner {
+    background: linear-gradient(120deg, var(--navy-deep), var(--navy) 55%, var(--navy-light));
+    padding: var(--sp-3) 0;
+    position: relative;
+  }
+
+  .benefit-banner::before {
+    content: "";
+    position: absolute;
+    inset: 0;
+    background: repeating-linear-gradient(135deg, rgba(212,175,55,0.06) 0 2px, transparent 2px 22px);
+    pointer-events: none;
+  }
+
+  .benefit-wrap {
+    display: flex;
+    flex-wrap: wrap;
+    gap: var(--sp-2);
+    justify-content: center;
+    align-items: center;
+  }
+
+  .benefit-item {
+    display: flex;
+    align-items: center;
+    gap: var(--sp-1);
+    background: rgba(255,255,255,0.06);
+    border: 1px solid rgba(212,175,55,0.4);
+    border-radius: var(--radius-full);
+    padding: var(--sp-2) var(--sp-3);
+    color: #fff;
+  }
+
+  .benefit-item .tag {
+    background: var(--gold);
+    color: var(--navy-deep);
+    font-weight: 700;
+    font-size: 11px;
+    padding: 3px 10px;
+    border-radius: var(--radius-full);
+    letter-spacing: 0.05em;
+  }
+
+  .benefit-item .txt {
+    font-weight: 700;
+    font-size: 15px;
+    letter-spacing: 0.02em;
+  }
+
+  .benefit-item .txt strong {
+    color: var(--gold-light);
+    font-size: 17px;
+  }
+
+  /* ===== Founder ===== */
+  .founder {
+    background: #fff;
+  }
+
+  .founder-wrap {
+    display: flex;
+    flex-direction: column;
+    gap: var(--sp-3);
+    align-items: center;
+  }
+
+  .founder-photo {
+    width: 160px;
+    height: 160px;
+    border-radius: 50%;
+    overflow: hidden;
+    border: 4px solid var(--gold-soft);
+    box-shadow: var(--shadow-2);
+    flex-shrink: 0;
+  }
+
+  .founder-photo img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+  }
+
+  .founder-text {
+    max-width: 640px;
+  }
+
+  .founder-name {
+    text-align: center;
+    font-weight: 700;
+    color: var(--navy);
+    margin-bottom: var(--sp-1);
+    font-size: 15px;
+  }
+
+  .founder-role {
+    text-align: center;
+    color: var(--gold);
+    font-size: 13px;
+    font-weight: 700;
+    letter-spacing: 0.1em;
+    margin-bottom: var(--sp-3);
+  }
+
+  .founder-text p {
+    margin-bottom: var(--sp-2);
+    color: var(--gray-536);
+    font-size: 15px;
+  }
+
+  .founder-text p:last-child { margin-bottom: 0; }
+
+  .founder-quote {
+    background: var(--cream);
+    border-left: 4px solid var(--gold);
+    padding: var(--sp-2) var(--sp-3);
+    border-radius: var(--radius-8);
+    font-weight: 700;
+    color: var(--navy);
+    margin-top: var(--sp-3);
+    font-size: 15px;
+  }
+
+  /* ===== Service Cards ===== */
+  .service {
+    background: linear-gradient(180deg, var(--cream), #fff);
+  }
+
+  .card-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+    gap: var(--sp-3);
+  }
+
+  .service-card {
+    background: #fff;
+    border-radius: var(--radius-16);
+    padding: var(--sp-4) var(--sp-3);
+    box-shadow: var(--shadow-2);
+    border-top: 4px solid var(--gold);
+    text-align: center;
+    transition: transform 0.2s ease;
+  }
+
+  .service-card:hover { transform: translateY(-4px); }
+
+  .service-icon {
+    width: 56px;
+    height: 56px;
+    margin: 0 auto var(--sp-2);
+    background: var(--navy);
+    border-radius: var(--radius-12);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 26px;
+  }
+
+  .service-card h3 {
+    color: var(--navy);
+    font-size: 17px;
+    margin-bottom: var(--sp-1);
+  }
+
+  .service-card p {
+    color: var(--gray-536);
+    font-size: 14px;
+  }
+
+  .service-note {
+    margin-top: var(--sp-4);
+    background: var(--navy);
+    color: #fff;
+    border-radius: var(--radius-16);
+    padding: var(--sp-3) var(--sp-4);
+    display: flex;
+    flex-wrap: wrap;
+    gap: var(--sp-3);
+    justify-content: space-around;
+    text-align: center;
+  }
+
+  .service-note .item strong {
+    display: block;
+    color: var(--gold-light);
+    font-size: 13px;
+    letter-spacing: 0.05em;
+    margin-bottom: var(--sp-1);
+  }
+
+  .service-note .item span {
+    font-size: 14px;
+  }
+
+  /* ===== Strengths ===== */
+  .strength {
+    background: var(--navy-deep);
+    color: #fff;
+    position: relative;
+  }
+
+  .strength .section-title { color: #fff; }
+  .strength .section-sub { color: rgba(255,255,255,0.68); }
+
+  .strength-list {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+    gap: var(--sp-3);
+  }
+
+  .strength-item {
+    background: rgba(255,255,255,0.05);
+    border: 1px solid rgba(212,175,55,0.25);
+    border-radius: var(--radius-16);
+    padding: var(--sp-3);
+  }
+
+  .strength-item .num {
+    display: inline-flex;
+    width: 34px;
+    height: 34px;
+    align-items: center;
+    justify-content: center;
+    background: var(--gold);
+    color: var(--navy-deep);
+    border-radius: 50%;
+    font-weight: 700;
+    font-size: 14px;
+    margin-bottom: var(--sp-2);
+  }
+
+  .strength-item h3 {
+    font-size: 16px;
+    margin-bottom: var(--sp-1);
+    color: var(--gold-light);
+  }
+
+  .strength-item p {
+    font-size: 14px;
+    color: rgba(255,255,255,0.8);
+  }
+
+  /* ===== Results ===== */
+  .results { background: #fff; }
+
+  .case-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+    gap: var(--sp-3);
+  }
+
+  .case-card {
+    border-radius: var(--radius-16);
+    box-shadow: var(--shadow-2);
+    overflow: hidden;
+    border: 1px solid #eee;
+  }
+
+  .case-head {
+    background: var(--navy);
+    color: var(--gold-light);
+    padding: var(--sp-2) var(--sp-3);
+    font-weight: 700;
+    font-size: 13px;
+    letter-spacing: 0.05em;
+  }
+
+  .case-body { padding: var(--sp-3); }
+
+  .case-row {
+    display: flex;
+    align-items: center;
+    gap: var(--sp-1);
+    margin-bottom: var(--sp-2);
+  }
+
+  .case-badge {
+    font-size: 11px;
+    font-weight: 700;
+    padding: 4px 10px;
+    border-radius: var(--radius-full);
+    flex-shrink: 0;
+  }
+
+  .badge-before { background: #eceff6; color: var(--navy); }
+  .badge-after { background: var(--gold-soft); color: #8a6d1a; }
+
+  .case-arrow {
+    text-align: center;
+    color: var(--gold);
+    font-size: 18px;
+    margin: var(--sp-1) 0;
+  }
+
+  .case-body p.detail {
+    font-size: 13px;
+    color: var(--gray-536);
+    margin: 0;
+  }
+
+  .case-result {
+    margin-top: var(--sp-2);
+    background: var(--cream);
+    border-radius: var(--radius-8);
+    padding: var(--sp-2);
+    font-size: 13px;
+    font-weight: 700;
+    color: var(--navy);
+    text-align: center;
+  }
+
+  /* ===== Form ===== */
+  .apply {
+    background: linear-gradient(180deg, var(--cream), #fff);
+  }
+
+  .form-card {
+    max-width: 640px;
+    margin: 0 auto;
+    background: #fff;
+    border-radius: var(--radius-16);
+    box-shadow: var(--shadow-4);
+    padding: var(--sp-4) var(--sp-3);
+    border-top: 5px solid var(--gold);
+  }
+
+  .form-group {
+    margin-bottom: var(--sp-3);
+  }
+
+  .form-group label {
+    display: block;
+    font-size: 14px;
+    font-weight: 700;
+    color: var(--navy);
+    margin-bottom: var(--sp-1);
+  }
+
+  .form-group label .req {
+    color: #c0392b;
+    font-size: 11px;
+    margin-left: var(--sp-1);
+    font-weight: 700;
+  }
+
+  .form-group input,
+  .form-group select,
+  .form-group textarea {
+    width: 100%;
+    min-height: 48px;
+    padding: var(--sp-2);
+    border: 1.5px solid #dfe2ea;
+    border-radius: var(--radius-8);
+    font-size: 16px; /* 16px以上でiOS Safariの自動ズームを防止 */
+    font-family: inherit;
+    color: var(--text-main);
+    background: #fbfbfd;
+    transition: border-color 0.2s ease;
+  }
+
+  .form-group textarea { min-height: 120px; }
+
+  .form-group input:focus,
+  .form-group select:focus,
+  .form-group textarea:focus {
+    border-color: var(--focus-blue);
+    background: #fff;
+  }
+
+  .form-row {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: var(--sp-2);
+  }
+
+  .submit-btn {
+    width: 100%;
+    min-height: 56px;
+    font-size: 17px;
+    margin-top: var(--sp-1);
+  }
+
+  .form-privacy {
+    text-align: center;
+    font-size: 12px;
+    color: var(--gray-536);
+    margin-top: var(--sp-2);
+  }
+
+  /* ===== Footer ===== */
+  footer {
+    background: var(--navy-deep);
+    color: rgba(255,255,255,0.6);
+    text-align: center;
+    padding: var(--sp-4) var(--sp-3);
+    font-size: 12px;
+  }
+
+  footer .brand {
+    color: var(--gold-light);
+    font-weight: 700;
+    font-size: 14px;
+    margin-bottom: var(--sp-1);
+  }
+
+  /* ===== Progressive enhancement: tablet and up ===== */
+  @media (min-width: 641px) {
+    section { padding: var(--sp-8) 0; }
+    .container { padding: 0 var(--sp-4); }
+
+    .hero-content { padding: 96px var(--sp-3) var(--sp-8); }
+
+    .founder-wrap { flex-direction: row; align-items: flex-start; text-align: left; gap: var(--sp-4); }
+    .founder-photo { width: 200px; height: 200px; }
+    .founder-name, .founder-role { text-align: left; }
+
+    .form-row { grid-template-columns: 1fr 1fr; }
+    .form-card { padding: var(--sp-6) var(--sp-6); }
+  }
+
+  /* ===== Progressive enhancement: desktop and up ===== */
+  @media (min-width: 1025px) {
+    section { padding: var(--sp-11) 0; }
+
+    .founder-photo { width: 220px; height: 220px; }
+  }
+
+  /* アニメーション低減設定を尊重(DADSアクセシビリティ指針) */
+  @media (prefers-reduced-motion: reduce) {
+    * { transition: none !important; scroll-behavior: auto !important; }
+  }
+</style>
+</head>
+<body>
+  <a href="#main" class="skip-link">メインコンテンツへスキップ</a>
+
+  <!-- 1. Hero -->
+  <section class="hero" aria-labelledby="hero-heading">
+    <div class="hero-bg"></div>
+    <div class="hero-overlay"></div>
+    <div class="hero-content" id="main">
+      <span class="hero-badge"><span class="dot"></span>家庭教師 REACH</span>
+      <h1 class="hero-copy" id="hero-heading">高校中退から、現役で慶應合格。<br>
+        「学校には行かない。でも、<span class="accent">勉強はしたい</span>。」<br>
+        その気持ちに、本気で応えます。</h1>
+      <p class="hero-lead">オンラインで、あなたのペースに合わせた学びを。無料体験授業・無料相談、実施中です。</p>
+      <div class="hero-cta">
+        <a href="#apply" class="btn btn-primary">無料体験授業に申し込む</a>
+        <a href="#service" class="btn btn-outline">サービス内容を見る</a>
+      </div>
+    </div>
+  </section>
+
+  <!-- 2. Benefit Banner -->
+  <div class="benefit-banner" role="note" aria-label="キャンペーン特典">
+    <div class="container benefit-wrap">
+      <div class="benefit-item">
+        <span class="tag">今なら</span>
+        <span class="txt">入塾費 <strong>無料</strong></span>
+      </div>
+      <div class="benefit-item">
+        <span class="tag">さらに</span>
+        <span class="txt">初月授業料 <strong>半額</strong></span>
+      </div>
+    </div>
+  </div>
+
+  <!-- 3. Founder -->
+  <section class="founder" aria-labelledby="founder-heading">
+    <div class="container">
+      <h2 class="section-title" id="founder-heading">代表からの<span>メッセージ</span></h2>
+      <p class="section-sub">同じ道を歩んだからこそ、伝えられることがあります</p>
+      <div class="founder-wrap">
+        <div class="founder-photo">
+          <img src="images/founder.jpg" alt="REACH代表の写真">
+        </div>
+        <div class="founder-text">
+          <p class="founder-name">REACH 代表</p>
+          <p class="founder-role">FOUNDER'S MESSAGE</p>
+          <p>私は高校生の頃、学校に通えなくなり、最終的に中退という道を選びました。周りと同じように学校へ行き、授業を受けることができない自分に、当時は焦りや劣等感を感じていたのを覚えています。</p>
+          <p>それでも「勉強を諦めたくない」という気持ちだけは消えず、学校の授業に頼らず、自分に合った学び方・進め方を一から模索しました。試行錯誤の末にたどり着いた独学の勉強法で学び続け、現役で慶應義塾大学に合格することができました。</p>
+          <p>この経験から強く感じたのは、「学校に行けるかどうか」と「勉強ができるかどうか」は、まったく別の話だということです。正しいやり方とペースさえあれば、誰でも勉強を前向きに、楽しいものとして感じられるはずだと思っています。</p>
+          <p>その想いから、REACHを立ち上げました。どんな状況にある生徒にとっても、勉強が「つらいもの」ではなく「楽しいもの」だと感じてもらえるように、一人ひとりに本気で向き合います。</p>
+          <div class="founder-quote">「学校に行く・行かない」は関係ない。あなたのペースで、一緒に前へ進みましょう。</div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- 4. Service -->
+  <section class="service" id="service" aria-labelledby="service-heading">
+    <div class="container">
+      <h2 class="section-title" id="service-heading">サービス<span>内容</span></h2>
+      <p class="section-sub">不登校・不登校気味のお子様も、無理なく続けられる仕組みです</p>
+      <div class="card-grid">
+        <div class="service-card">
+          <div class="service-icon" aria-hidden="true">🎓</div>
+          <h3>対象学年</h3>
+          <p>小学1年生〜高校3年生まで、幅広い学年に対応しています。</p>
+        </div>
+        <div class="service-card">
+          <div class="service-icon" aria-hidden="true">💻</div>
+          <h3>指導形式</h3>
+          <p>オンライン中心。スケジュールは都度調整、固定の曜日・時間に縛られません。</p>
+        </div>
+        <div class="service-card">
+          <div class="service-icon" aria-hidden="true">💰</div>
+          <h3>料金</h3>
+          <p>1コマ4,000円〜。月謝制ではなく、受けた授業数分のみのお支払いです。</p>
+        </div>
+        <div class="service-card">
+          <div class="service-icon" aria-hidden="true">🤝</div>
+          <h3>保護者面談</h3>
+          <p>塾長との面談を2か月に1回(オプション)。ご家庭と状況を共有します。</p>
+        </div>
+      </div>
+      <div class="service-note">
+        <div class="item">
+          <strong>無料体験授業</strong>
+          <span>実際の授業を体験できます</span>
+        </div>
+        <div class="item">
+          <strong>無料面談</strong>
+          <span>お子様の状況をじっくりヒアリング</span>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- 5. Strengths -->
+  <section class="strength" aria-labelledby="strength-heading">
+    <div class="container">
+      <h2 class="section-title" id="strength-heading">REACHの<span>強み</span></h2>
+      <p class="section-sub">続けられる仕組みと、本気で向き合う姿勢</p>
+      <div class="strength-list">
+        <div class="strength-item">
+          <span class="num" aria-hidden="true">01</span>
+          <h3>オンライン勉強会を定期開催</h3>
+          <p>勉強習慣の定着に加え、新しい仲間と出会える勉強コミュニティも作っていきます。</p>
+        </div>
+        <div class="strength-item">
+          <span class="num" aria-hidden="true">02</span>
+          <h3>全国どこでも受講可能</h3>
+          <p>オンライン対応だから、家から出たくない生徒でも安心して継続できます。</p>
+        </div>
+        <div class="strength-item">
+          <span class="num" aria-hidden="true">03</span>
+          <h3>徹底したヒアリング</h3>
+          <p>生徒一人ひとりの状況を丁寧に伺い、最適な授業内容・先生をご提案します。</p>
+        </div>
+        <div class="strength-item">
+          <span class="num" aria-hidden="true">04</span>
+          <h3>無理のない課金システム</h3>
+          <p>授業数に応じた課金だから、自分のペースで無理なく続けられます。</p>
+        </div>
+        <div class="strength-item">
+          <span class="num" aria-hidden="true">05</span>
+          <h3>保護者面談オプション</h3>
+          <p>2か月に1回の面談で、生徒の状況をご家庭と共有できる安心感があります。</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- 6. Results -->
+  <section class="results" aria-labelledby="results-heading">
+    <div class="container">
+      <h2 class="section-title" id="results-heading">生徒の<span>実績</span></h2>
+      <p class="section-sub">一人ひとりのペースで、確かな成長を</p>
+      <div class="case-grid">
+        <div class="case-card">
+          <div class="case-head">CASE 01 / 中学2年生</div>
+          <div class="case-body">
+            <div class="case-row">
+              <span class="case-badge badge-before">BEFORE</span>
+              <p class="detail">学校に行けておらず、英語はほぼゼロからのスタート</p>
+            </div>
+            <div class="case-arrow" aria-hidden="true">↓</div>
+            <div class="case-row">
+              <span class="case-badge badge-after">AFTER</span>
+              <p class="detail">基礎から丁寧に指導し、着実に力を伸長</p>
+            </div>
+            <div class="case-result">4か月で英検3級に挑戦できるまで成長</div>
+          </div>
+        </div>
+        <div class="case-card">
+          <div class="case-head">CASE 02 / 中学生</div>
+          <div class="case-body">
+            <div class="case-row">
+              <span class="case-badge badge-before">BEFORE</span>
+              <p class="detail">入塾時偏差値35、学校の勉強についていけない状態</p>
+            </div>
+            <div class="case-arrow" aria-hidden="true">↓</div>
+            <div class="case-row">
+              <span class="case-badge badge-after">AFTER</span>
+              <p class="detail">週1回の授業で勉強習慣と自学力が定着</p>
+            </div>
+            <div class="case-result">偏差値55の公立高校に合格</div>
+          </div>
+        </div>
+        <div class="case-card">
+          <div class="case-head">CASE 03 / 高校2年生</div>
+          <div class="case-body">
+            <div class="case-row">
+              <span class="case-badge badge-before">BEFORE</span>
+              <p class="detail">英語の学年順位が伸び悩んでいる状態</p>
+            </div>
+            <div class="case-arrow" aria-hidden="true">↓</div>
+            <div class="case-row">
+              <span class="case-badge badge-after">AFTER</span>
+              <p class="detail">弱点を分析し、的確な学習プランで指導</p>
+            </div>
+            <div class="case-result">3か月で学年順位が100位アップ</div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Benefit Banner (repeat) -->
+  <div class="benefit-banner" role="note" aria-label="キャンペーン特典">
+    <div class="container benefit-wrap">
+      <div class="benefit-item">
+        <span class="tag">今なら</span>
+        <span class="txt">入塾費 <strong>無料</strong></span>
+      </div>
+      <div class="benefit-item">
+        <span class="tag">さらに</span>
+        <span class="txt">初月授業料 <strong>半額</strong></span>
+      </div>
+    </div>
+  </div>
+
+  <!-- 7. Apply Form -->
+  <section class="apply" id="apply" aria-labelledby="apply-heading">
+    <div class="container">
+      <h2 class="section-title" id="apply-heading">無料体験授業・<span>無料相談</span>はこちら</h2>
+      <p class="section-sub">お気軽にご相談ください。24時間以内にご返信いたします。</p>
+      <div class="form-card">
+        <form action="https://formspree.io/f/mlgoepvo" method="POST">
+          <div class="form-group">
+            <label for="parent_name">保護者様のお名前<span class="req">必須</span></label>
+            <input type="text" id="parent_name" name="保護者様のお名前" required placeholder="例)REACH 花子">
+          </div>
+          <div class="form-group">
+            <label for="child_name">お子様のお名前<span class="req">必須</span></label>
+            <input type="text" id="child_name" name="お子様のお名前" required placeholder="例)REACH 太郎">
+          </div>
+          <div class="form-row">
+            <div class="form-group">
+              <label for="grade">学年<span class="req">必須</span></label>
+              <select id="grade" name="学年" required>
+                <option value="">選択してください</option>
+                <option>小学1年生</option>
+                <option>小学2年生</option>
+                <option>小学3年生</option>
+                <option>小学4年生</option>
+                <option>小学5年生</option>
+                <option>小学6年生</option>
+                <option>中学1年生</option>
+                <option>中学2年生</option>
+                <option>中学3年生</option>
+                <option>高校1年生</option>
+                <option>高校2年生</option>
+                <option>高校3年生</option>
+                <option>その他</option>
+              </select>
+            </div>
+            <div class="form-group">
+              <label for="area">お住まいの地域<span class="req">必須</span></label>
+              <input type="text" id="area" name="お住まいの地域" required placeholder="例)東京都">
+            </div>
+          </div>
+          <div class="form-group">
+            <label for="message">ご相談内容(自由記述)</label>
+            <textarea id="message" name="ご相談内容" rows="4" placeholder="現在のお子様の状況やご希望などをご自由にご記入ください"></textarea>
+          </div>
+          <div class="form-group">
+            <label for="email">メールアドレス<span class="req">必須</span></label>
+            <input type="email" id="email" name="メールアドレス" required placeholder="example@mail.com">
+          </div>
+          <div class="form-group">
+            <label for="tel">電話番号<span class="req">必須</span></label>
+            <input type="tel" id="tel" name="電話番号" required placeholder="090-1234-5678">
+          </div>
+          <button type="submit" class="btn btn-primary submit-btn">無料で相談・体験授業を申し込む</button>
+          <p class="form-privacy">ご入力いただいた情報は、お問い合わせ対応の目的以外には使用いたしません。</p>
+        </form>
+      </div>
+    </div>
+  </section>
+
+  <footer>
+    <div class="brand">REACH</div>
+    <p>&copy; 2026 REACH. All Rights Reserved.</p>
+  </footer>
+
+</body>
+</html>

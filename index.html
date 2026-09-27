@@ -983,6 +983,48 @@
     .top-bar-note { display: none; }
   }
 
+  .top-bar-offer {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: baseline;
+    gap: 2px var(--sp-2);
+  }
+
+  .top-bar-status {
+    font-size: 12px;
+    font-weight: 500;
+    color: rgba(255,255,255,0.78);
+  }
+
+  /* ===== 先着枠の状態表示(PRICING_TIERSから自動反映) ===== */
+  [hidden] { display: none !important; }
+
+  .pricing-status {
+    display: inline-block;
+    font-size: 13px;
+    font-weight: 700;
+    letter-spacing: 0.04em;
+    color: var(--navy);
+    border: 1px solid var(--line);
+    border-radius: 4px;
+    padding: 2px 10px;
+    margin-bottom: var(--sp-2);
+  }
+
+  .price-closed {
+    margin-top: var(--sp-3);
+    padding-top: var(--sp-2);
+    border-top: 1px solid var(--line);
+    font-size: 13px;
+    color: var(--gray-536);
+  }
+
+  /* 満席時: 価格表示をグレー系に */
+  html[data-pricing-state="soldout"] .price-accent { color: var(--gray-536); }
+  html[data-pricing-state="soldout"] .top-bar .price-accent,
+  html[data-pricing-state="soldout"] .benefit-banner .price-accent { color: #b3b8c4; }
+  html[data-pricing-state="soldout"] .pricing-status { color: var(--gray-536); }
+
   /* ===== Sticky mobile CTA ===== */
   .sticky-cta {
     display: none;
@@ -1096,12 +1138,52 @@
 </style>
 </head>
 <body>
+  <script>
+    /*
+     * ===== 料金・先着枠の設定(ここを編集するとページ全体の表示に反映されます) =====
+     *
+     * 【日々の運用】
+     *   先着枠(5名)が埋まったタイミングで、受付中の弾の isFull を手動で true に書き換えてください。
+     *     例)isFull: false → isFull: true
+     *   true にすると、ページ全体が自動で「満席」表示に切り替わり、
+     *   以降は通常料金(STANDARD_PRICE)でのご案内になります。
+     *   ※申込フォームは閉じません(通常料金で引き続き受け付けます)。
+     *   ※具体的な残り人数はページ上に表示しません。
+     *
+     * 【将来の段階値上げ】
+     *   第2弾以降は、この配列の末尾に要素を追加する形で組み込めます。
+     *     例){ label: "第2弾", slots: 5, isFull: false, price: 5000 }
+     *   ※現時点では最初の要素(第1弾)のみを有効として扱います。
+     *
+     *   label  … 弾の名前
+     *   slots  … 先着の枠数
+     *   isFull … 枠が埋まったら true(手動で書き換える)
+     *   price  … この弾の1時間あたりの料金(円)
+     */
+    const PRICING_TIERS = [
+      { label: "第1弾", slots: 5, isFull: false, price: 3000 }
+      // , { label: "第2弾", slots: 5, isFull: false, price: 5000 }
+    ];
+    const STANDARD_PRICE = 6000; // 通常料金(1時間あたり・円)
+  </script>
+
   <a href="#main" class="skip-link">メインコンテンツへスキップ</a>
+
+  <!--
+    料金まわりの表示はJSで一括更新(末尾のscript参照)
+    data-pricing="…"       : 中身のテキストを差し替え(status / slots / price / price-monthly / standard / standard-monthly / discount / half-prefix)
+    data-pricing-show="…"  : open(受付中)/ soldout(満席)のどちらの時に表示するか
+    .price-accent          : 価格表示。満席時はグレーに切り替わる
+  -->
 
   <!-- PC限定 上部固定バー -->
   <div class="top-bar" id="topBar" role="note" aria-label="キャンペーン特典">
     <div class="container top-bar-inner">
-      <p class="top-bar-offer">先着5名限定、ずっと半額の1時間<em>3,000円</em></p>
+      <p class="top-bar-offer">
+        <span class="top-bar-status" data-pricing="status">先着5名限定</span>
+        <span data-pricing-show="open">ずっと<span data-pricing="half-prefix">半額の</span>1時間<em class="price-accent"><span data-pricing="price">3,000</span>円</em></span>
+        <span data-pricing-show="soldout" hidden>現在は通常料金 1時間<em class="price-accent"><span data-pricing="standard">6,000</span>円</em>でご案内しています</span>
+      </p>
       <div class="top-bar-action">
         <span class="top-bar-note">しつこいご連絡や無理な勧誘は一切いたしません。</span>
         <a href="#apply" class="btn btn-primary">無料体験に申し込む</a>
@@ -1125,7 +1207,11 @@
           <a href="#apply" class="btn btn-primary">無料体験授業に申し込む</a>
           <a href="#service" class="btn btn-outline">サービス内容を見る</a>
         </div>
-        <p class="hero-offer">先着5名限定で、通常1時間6,000円の授業料が<strong>ずっと3,000円</strong>に。<a href="#pricing">料金を見る</a></p>
+        <p class="hero-offer">
+          <span data-pricing-show="open"><span data-pricing="status">先着5名限定</span>。通常1時間<span data-pricing="standard">6,000</span>円の授業料が<strong class="price-accent">ずっと<span data-pricing="price">3,000</span>円</strong>に。</span>
+          <span data-pricing-show="soldout" hidden><span data-pricing="status"></span>。現在は通常料金<strong class="price-accent">1時間<span data-pricing="standard">6,000</span>円</strong>でご案内しています。</span>
+          <a href="#pricing">料金を見る</a>
+        </p>
       </div>
     </div>
   </section>
@@ -1133,33 +1219,60 @@
   <!-- 2. Pricing -->
   <section class="pricing" id="pricing" aria-labelledby="pricing-heading">
     <div class="container">
-      <h2 class="section-title" id="pricing-heading">先着5名限定、授業料がずっと半額に。</h2>
-      <p class="section-sub">この料金は、一度ご入会いただければ途中で上がることはありません。</p>
+      <p class="pricing-status" data-pricing="status">先着5名限定</p>
+      <h2 class="section-title" id="pricing-heading">
+        <span data-pricing-show="open">授業料がずっと<span data-pricing="discount">半額</span>に。</span>
+        <span data-pricing-show="soldout" hidden>現在は通常料金でご案内しています。</span>
+      </h2>
+      <p class="section-sub">
+        <span data-pricing-show="open">この料金は、一度ご入会いただければ途中で上がることはありません。</span>
+        <span data-pricing-show="soldout" hidden>無料体験授業・無料相談は、引き続き受け付けています。</span>
+      </p>
       <div class="price-card">
-        <div class="price-compare">
-          <div class="price-old">
-            <span class="price-tag">通常</span>
-            <span class="price-figure">1時間 6,000円</span>
+        <div data-pricing-show="open">
+          <div class="price-compare">
+            <div class="price-old">
+              <span class="price-tag">通常</span>
+              <span class="price-figure">1時間 <span data-pricing="standard">6,000</span>円</span>
+            </div>
+            <span class="price-arrow" aria-hidden="true">→</span>
+            <div class="price-new">
+              <span class="price-tag">先着<span data-pricing="slots">5</span>名限定</span>
+              <span class="price-figure price-accent">ずっと1時間 <span data-pricing="price">3,000</span>円</span>
+            </div>
           </div>
-          <span class="price-arrow" aria-hidden="true">→</span>
-          <div class="price-new">
-            <span class="price-tag">先着5名限定</span>
-            <span class="price-figure">ずっと1時間 3,000円</span>
-          </div>
-        </div>
-        <p class="price-note">※1授業1時間の場合</p>
+          <p class="price-note">※1授業1時間の場合</p>
 
-        <div class="price-compare price-compare-sub">
-          <div class="price-old">
-            <span class="price-figure">24,000円/月</span>
+          <div class="price-compare price-compare-sub">
+            <div class="price-old">
+              <span class="price-figure"><span data-pricing="standard-monthly">24,000</span>円/月</span>
+            </div>
+            <span class="price-arrow" aria-hidden="true">→</span>
+            <div class="price-new">
+              <span class="price-tag">先着<span data-pricing="slots">5</span>名特典</span>
+              <span class="price-figure price-accent"><span data-pricing="price-monthly">12,000</span>円/月</span>
+            </div>
           </div>
-          <span class="price-arrow" aria-hidden="true">→</span>
-          <div class="price-new">
-            <span class="price-tag">先着5名特典</span>
-            <span class="price-figure">12,000円/月</span>
-          </div>
+          <p class="price-note">※1授業1時間、月4回受講の場合</p>
         </div>
-        <p class="price-note">※1授業1時間、月4回受講の場合</p>
+
+        <div data-pricing-show="soldout" hidden>
+          <div class="price-compare">
+            <div class="price-new">
+              <span class="price-tag">通常料金</span>
+              <span class="price-figure price-accent">1時間 <span data-pricing="standard">6,000</span>円</span>
+            </div>
+          </div>
+          <p class="price-note">※1授業1時間の場合</p>
+
+          <div class="price-compare price-compare-sub">
+            <div class="price-new">
+              <span class="price-figure price-accent"><span data-pricing="standard-monthly">24,000</span>円/月</span>
+            </div>
+          </div>
+          <p class="price-note">※1授業1時間、月4回受講の場合</p>
+          <p class="price-closed">先着<span data-pricing="slots">5</span>名の特別料金(1時間<span data-pricing="price">3,000</span>円)の受付は終了しました。</p>
+        </div>
       </div>
       <p class="price-ref">一般的な個別指導塾では月謝20,000円台〜、入会金も別途かかることが多い中、REACHは入会金0円からスタートできます</p>
     </div>
@@ -1201,7 +1314,11 @@
           <h3 class="service-kicker" id="service-price-heading">料金</h3>
           <p class="service-price"><span class="num">6,000</span>円 / 1時間</p>
           <p class="body">月謝制ではなく、受けた時間分のみのお支払いです。教材費はかかりません。</p>
-          <p class="aside">先着5名は、ずっと1時間3,000円。<a href="#pricing">詳しく見る</a></p>
+          <p class="aside">
+            <span data-pricing-show="open">先着<span data-pricing="slots">5</span>名は、ずっと1時間<span data-pricing="price">3,000</span>円。</span>
+            <span data-pricing-show="soldout" hidden><span data-pricing="status"></span>。</span>
+            <a href="#pricing">詳しく見る</a>
+          </p>
         </article>
         <dl class="service-list">
           <div>
@@ -1374,11 +1491,14 @@
   <!-- Benefit Banner(フォーム直前の1回のみ) -->
   <div class="benefit-banner" role="note" aria-label="キャンペーン特典">
     <div class="container benefit-wrap">
-      <span class="benefit-badge">先着5名限定</span>
-      <div class="benefit-price">
-        <span class="benefit-price-old">通常 1時間6,000円</span>
+      <span class="benefit-badge" data-pricing="status">先着5名限定</span>
+      <div class="benefit-price" data-pricing-show="open">
+        <span class="benefit-price-old">通常 1時間<span data-pricing="standard">6,000</span>円</span>
         <span class="benefit-price-arrow" aria-hidden="true">→</span>
-        <span class="benefit-price-new">ずっと半額の<em>3,000円</em></span>
+        <span class="benefit-price-new">ずっと<span data-pricing="half-prefix">半額の</span><em class="price-accent"><span data-pricing="price">3,000</span>円</em></span>
+      </div>
+      <div class="benefit-price" data-pricing-show="soldout" hidden>
+        <span class="benefit-price-new">現在は通常料金 1時間<em class="price-accent"><span data-pricing="standard">6,000</span>円</em>でご案内しています</span>
       </div>
     </div>
   </div>
@@ -1454,6 +1574,41 @@
   </div>
 
   <script>
+    // 料金・先着枠の表示を PRICING_TIERS / STANDARD_PRICE(body冒頭)から一括反映
+    (function () {
+      if (typeof PRICING_TIERS === 'undefined' || !PRICING_TIERS.length) return;
+
+      // 現時点では第1弾のみ有効。第2弾以降を導入する際は、ここで受付中の弾を選ぶ処理に拡張する
+      var tier = PRICING_TIERS[0];
+      var state = tier.isFull === true ? 'soldout' : 'open';
+      var isHalf = tier.price * 2 === STANDARD_PRICE;
+      var yen = function (n) { return n.toLocaleString('ja-JP'); };
+
+      var values = {
+        status: state === 'open'
+          ? '先着' + tier.slots + '名限定(現在受付中)'
+          : '先着' + tier.slots + '名の枠は満席になりました',
+        slots: String(tier.slots),
+        price: yen(tier.price),
+        'price-monthly': yen(tier.price * 4),        // 月4回受講の場合
+        standard: yen(STANDARD_PRICE),
+        'standard-monthly': yen(STANDARD_PRICE * 4), // 月4回受講の場合
+        discount: isHalf ? '半額' : yen(tier.price) + '円',
+        'half-prefix': isHalf ? '半額の' : ''
+      };
+
+      document.documentElement.setAttribute('data-pricing-state', state);
+
+      document.querySelectorAll('[data-pricing]').forEach(function (el) {
+        var value = values[el.getAttribute('data-pricing')];
+        if (value !== undefined) el.textContent = value;
+      });
+
+      document.querySelectorAll('[data-pricing-show]').forEach(function (el) {
+        el.hidden = el.getAttribute('data-pricing-show') !== state;
+      });
+    })();
+
     // 固定CTA
     // モバイル下部CTA: フォームが見えている間は隠す
     // PC上部バー: ヒーローが画面外に出たら表示、フォームが見えている間は隠す

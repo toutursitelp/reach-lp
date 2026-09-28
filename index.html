@@ -19,8 +19,8 @@
 <meta name="twitter:image" content="https://reach-lp.vercel.app/images/hero.jpg">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<!-- 本文: Noto Sans JP / 感情表現(ヒーロー核心・代表の引用のみ): Shippori Mincho / 直筆メモ(1箇所のみ): Kaisei Decol -->
-<link href="https://fonts.googleapis.com/css2?family=Kaisei+Decol&family=Noto+Sans+JP:wght@400;500;700&family=Shippori+Mincho:wght@700&display=swap" rel="stylesheet">
+<!-- 本文: Noto Sans JP / 感情表現(ヒーロー核心・代表の引用のみ): Shippori Mincho -->
+<link href="https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@400;500;700&family=Shippori+Mincho:wght@700&display=swap" rel="stylesheet">
 <script>document.documentElement.classList.add('js');</script>
 <style>
   /*
@@ -53,7 +53,6 @@
 
     --font-sans: 'Noto Sans JP', "Hiragino Kaku Gothic ProN", "Hiragino Sans", "Yu Gothic", "Meiryo", sans-serif;
     --font-mincho: 'Shippori Mincho', "Hiragino Mincho ProN", "Yu Mincho", serif;
-    --font-hand: 'Kaisei Decol', var(--font-mincho);
 
     /* 8px基準のスペーシングスケール(DADS foundations/spacing) */
     --sp-1: 8px;
@@ -398,23 +397,6 @@
     width: 100%;
     aspect-ratio: 1;
     object-fit: cover;
-  }
-
-  /* 代表の直筆メモ(Kaisei Decolはここだけ) */
-  .founder-note {
-    font-family: var(--font-hand);
-    font-size: 19px;
-    line-height: 1.7;
-    color: var(--navy);
-    max-width: 220px;
-    transform: rotate(-1.5deg);
-  }
-
-  .founder-note .sign {
-    display: block;
-    text-align: right;
-    font-size: 15px;
-    margin-top: 4px;
   }
 
   .founder-text { max-width: 640px; }
@@ -1288,7 +1270,6 @@
           <figure class="founder-photo">
             <img src="images/founder.jpg" alt="REACH代表 鈴木俊太朗の写真">
           </figure>
-          <p class="founder-note">学校に行けなくても、書ける道はある。<span class="sign">— 俊太朗</span></p>
         </div>
         <div class="founder-text">
           <p class="founder-name">鈴木俊太朗</p>

@@ -3,19 +3,19 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>REACH | あなたのペースで、勉強を好きになる家庭教師</title>
-<meta name="description" content="学校に行かなくても、勉強はしたい。その気持ちに本気で応える家庭教師サービスREACH。オンライン中心、都度スケジュール調整、無料体験実施中。">
+<title>REACH | 不登校専門の家庭教師、あなたのペースで学びを</title>
+<meta name="description" content="REACHは不登校専門の家庭教師です。学校に行かなくても、勉強はしたい。その気持ちに本気で応えます。オンライン対応、スケジュールは都度調整、無料体験実施中。">
 <!-- ===== OGP / Twitter Card ===== -->
 <!-- SNSは相対パスを読めないため、og:url / og:image / twitter:image は本番ドメインの絶対URLで指定 -->
-<meta property="og:title" content="REACH | 学校には行かない。でも、勉強はしたい。">
-<meta property="og:description" content="高校中退から現役で慶應合格した代表が、不登校・不登校気味のお子様に本気で向き合う家庭教師サービス。オンライン対応、無料体験実施中。">
+<meta property="og:title" content="REACH | 不登校専門の家庭教師 ― 学校には行かない。でも、勉強はしたい。">
+<meta property="og:description" content="高校中退から現役で慶應合格した代表による、不登校専門の家庭教師サービス。一人ひとりのペースに合わせて、本気で向き合います。オンライン対応、無料体験実施中。">
 <meta property="og:type" content="website">
 <meta property="og:url" content="https://reach-lp.vercel.app/">
 <meta property="og:image" content="https://reach-lp.vercel.app/images/hero.jpg">
 <meta property="og:site_name" content="REACH">
 <meta name="twitter:card" content="summary_large_image">
-<meta name="twitter:title" content="REACH | 学校には行かない。でも、勉強はしたい。">
-<meta name="twitter:description" content="高校中退から現役で慶應合格した代表が、不登校・不登校気味のお子様に本気で向き合う家庭教師サービス。オンライン対応、無料体験実施中。">
+<meta name="twitter:title" content="REACH | 不登校専門の家庭教師 ― 学校には行かない。でも、勉強はしたい。">
+<meta name="twitter:description" content="高校中退から現役で慶應合格した代表による、不登校専門の家庭教師サービス。一人ひとりのペースに合わせて、本気で向き合います。オンライン対応、無料体験実施中。">
 <meta name="twitter:image" content="https://reach-lp.vercel.app/images/hero.jpg">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -193,8 +193,93 @@
     gap: var(--sp-5);
   }
 
+  .hero-heading { grid-area: copy; }
+
+  /* 専門性ラベル: ノートのインデックスタブ風 */
+  .hero-badge {
+    display: inline-flex;
+    align-items: stretch;
+    border: 1px solid var(--navy);
+    border-radius: 4px;
+    overflow: hidden;
+    margin-bottom: var(--sp-3);
+    font-size: 13px;
+    font-weight: 700;
+    letter-spacing: 0.12em;
+    line-height: 1.6;
+  }
+
+  .hero-badge-mark {
+    background: var(--navy);
+    color: #fff;
+    padding: 4px 12px;
+  }
+
+  .hero-badge-text {
+    color: var(--navy);
+    background: var(--paper-white);
+    padding: 4px 12px;
+  }
+
+  /* ===== Specialty statement(何の専門か、を一言で) ===== */
+  .specialty {
+    background: var(--navy);
+    color: #fff;
+    padding: var(--sp-6) 0;
+  }
+
+  .specialty-title {
+    font-size: clamp(22px, 4.6vw, 34px);
+    font-weight: 700;
+    line-height: 1.5;
+    letter-spacing: 0.04em;
+    margin-bottom: var(--sp-2);
+    word-break: keep-all;
+    overflow-wrap: break-word;
+  }
+
+  .specialty-lead {
+    font-size: 15px;
+    line-height: 1.9;
+    color: rgba(255,255,255,0.78);
+    max-width: 36em;
+    margin-bottom: var(--sp-5);
+  }
+
+  .specialty-points {
+    list-style: none;
+    display: grid;
+    border-top: 1px solid rgba(255,255,255,0.18);
+  }
+
+  .specialty-points li {
+    display: grid;
+    gap: 4px;
+    padding: var(--sp-2) 0;
+    border-bottom: 1px solid rgba(255,255,255,0.18);
+  }
+
+  .specialty-points strong {
+    font-size: 12px;
+    font-weight: 700;
+    letter-spacing: 0.16em;
+    color: rgba(255,255,255,0.6);
+  }
+
+  .specialty-points span {
+    font-size: 16px;
+    font-weight: 500;
+    line-height: 1.7;
+  }
+
+  @media (min-width: 641px) {
+    .specialty { padding: var(--sp-8) 0; }
+    .specialty-points { grid-template-columns: repeat(3, 1fr); }
+    .specialty-points li { border-bottom: 0; padding: var(--sp-3) var(--sp-3) 0 0; }
+    .specialty-points li + li { border-left: 1px solid rgba(255,255,255,0.18); padding-left: var(--sp-3); }
+  }
+
   .hero-copy {
-    grid-area: copy;
     color: var(--navy);
     word-break: keep-all;
     overflow-wrap: break-word;
@@ -406,10 +491,17 @@
     color: var(--navy);
     font-size: 18px;
     letter-spacing: 0.1em;
+    margin-bottom: 2px;
+  }
+
+  .founder-title {
+    font-size: 13px;
+    color: var(--text-sub);
+    letter-spacing: 0.04em;
     margin-bottom: var(--sp-3);
   }
 
-  .founder-text p:not(.founder-name) {
+  .founder-text p:not(.founder-name):not(.founder-title) {
     margin-bottom: var(--sp-2);
     color: var(--text-sub);
     font-size: 15px;
@@ -1176,11 +1268,14 @@
   <!-- 1. Hero -->
   <section class="hero ruled" aria-labelledby="hero-heading">
     <div class="container hero-inner" id="main">
-      <h1 class="hero-copy" id="hero-heading">
-        <span class="hero-copy-pre">高校中退から、現役で慶應合格。</span>
-        <span class="hero-copy-core">「学校には行かない。<br>でも、勉強はしたい。」<svg class="hero-underline" viewBox="0 0 400 14" preserveAspectRatio="none" aria-hidden="true" focusable="false"><path d="M3 9.5 C 38 6.8, 71 10.6, 112 8.4 S 176 5.6, 219 8.1 S 291 11.4, 334 7.6 S 381 6.9, 397 8.8"/></svg></span>
-        <span class="hero-copy-post">その気持ちに、本気で応えます。</span>
-      </h1>
+      <div class="hero-heading">
+        <p class="hero-badge"><span class="hero-badge-mark">不登校専門</span><span class="hero-badge-text">家庭教師 REACH</span></p>
+        <h1 class="hero-copy" id="hero-heading">
+          <span class="hero-copy-pre">高校中退から、現役で慶應合格。</span>
+          <span class="hero-copy-core">「学校には行かない。<br>でも、勉強はしたい。」<svg class="hero-underline" viewBox="0 0 400 14" preserveAspectRatio="none" aria-hidden="true" focusable="false"><path d="M3 9.5 C 38 6.8, 71 10.6, 112 8.4 S 176 5.6, 219 8.1 S 291 11.4, 334 7.6 S 381 6.9, 397 8.8"/></svg></span>
+          <span class="hero-copy-post">その気持ちに、本気で応えます。</span>
+        </h1>
+      </div>
       <figure class="hero-photo">
         <img src="images/hero.jpg" alt="机に向かって勉強する様子">
       </figure>
@@ -1195,6 +1290,19 @@
           <a href="#pricing">料金を見る</a>
         </p>
       </div>
+    </div>
+  </section>
+
+  <!-- Specialty statement -->
+  <section class="specialty" aria-labelledby="specialty-heading">
+    <div class="container">
+      <h2 class="specialty-title" id="specialty-heading">REACHは、不登校専門の家庭教師です。</h2>
+      <p class="specialty-lead">学校に通っていない・通いづらい生徒の学びに特化した家庭教師サービスです。「学校に行けるかどうか」と「勉強ができるかどうか」は、別の話。学校の外にも、ちゃんと学べる場所をつくります。</p>
+      <ul class="specialty-points">
+        <li><strong>専門の講師</strong><span>不登校の生徒への指導経験がある講師が担当します</span></li>
+        <li><strong>自宅から</strong><span>オンラインなら、家から一歩も出ずに受講できます</span></li>
+        <li><strong>自分のペースで</strong><span>スケジュールは都度調整。休んでも、また再開できます</span></li>
+      </ul>
     </div>
   </section>
 
@@ -1273,6 +1381,7 @@
         </div>
         <div class="founder-text">
           <p class="founder-name">鈴木俊太朗</p>
+          <p class="founder-title">不登校専門家庭教師 REACH 代表</p>
           <p>私は高校生の頃、学校に通えなくなり、最終的に中退という道を選びました。周りと同じように学校へ行き、授業を受けることができない自分に、当時は焦りや劣等感を感じていたのを覚えています。</p>
           <p>それでも「勉強を諦めたくない」という気持ちだけは消えず、学校の授業に頼らず、自分に合った学び方・進め方を一から模索しました。試行錯誤の末にたどり着いた独学の勉強法で学び続け、現役で慶應義塾大学に合格することができました。</p>
           <p>この経験から強く感じたのは、「学校に行けるかどうか」と「勉強ができるかどうか」は、まったく別の話だということです。正しいやり方とペースさえあれば、誰でも勉強を前向きに、楽しいものとして感じられるはずだと思っています。</p>
@@ -1302,6 +1411,10 @@
           </p>
         </article>
         <dl class="service-list">
+          <div>
+            <dt>安心して続けられる理由</dt>
+            <dd>不登校のお子様でも、無理なく安心して続けられる体制です。オンラインなら対面のプレッシャーを感じずに受講でき、スケジュールは都度調整なので、体調や気分に合わせてお休みしても、ペースを崩さず再開できます。講師は不登校の生徒への指導経験があります。</dd>
+          </div>
           <div>
             <dt>対象学年</dt>
             <dd>小学1年生〜高校3年生まで、幅広い学年に対応しています。</dd>
@@ -1361,17 +1474,17 @@
       <div class="strength-lead-list">
         <article class="strength-lead">
           <h3>オンライン勉強会を<br>定期開催</h3>
-          <p>勉強習慣の定着に加え、新しい仲間と出会える勉強コミュニティも作っていきます。</p>
+          <p>勉強習慣の定着に加え、学校の外で新しい仲間と出会える勉強コミュニティも作っていきます。</p>
         </article>
         <article class="strength-lead">
           <h3>徹底した<br>ヒアリング</h3>
-          <p>生徒一人ひとりの状況を丁寧に伺い、最適な授業内容・先生をご提案します。</p>
+          <p>不登校の背景や今の状況は、一人ひとり違うもの。だからこそ丁寧にお話を伺い、最適な授業内容・先生をご提案します。</p>
         </article>
       </div>
       <ul class="strength-more">
         <li>
           <h3>全国どこでも受講可能</h3>
-          <p>オンライン対応だから、家から出たくない生徒でも安心して継続できます。</p>
+          <p>オンライン受講なら、不登校のお子様が、家から一歩も出ずに、自分のペースで学べます。</p>
         </li>
         <li>
           <h3>無理のない課金システム</h3>

@@ -1,0 +1,400 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>プライバシーポリシー | REACH</title>
+<meta name="description" content="不登校専門の家庭教師REACHのプライバシーポリシーです。">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@400;500;700&display=swap" rel="stylesheet">
+<style>
+  /* トークンは index.html と共通(変更時は両ファイルを揃えること) */
+  :root {
+    --navy: #0f1b3c;
+    --navy-deep: #0a1230;
+    --navy-light: #1c2c5c;
+    --gold: #d4af37;
+    --gold-light: #f0d878;
+    --gold-soft: #f7e9b8;
+    --cream: #fbf8f2;
+    --text-main: #1e2433;
+    --text-sub: #545c6e;
+
+    --gray-536: #767676;
+
+    --focus-blue: #0877d7;
+
+    --radius-8: 8px;
+    --radius-16: 16px;
+    --radius-full: 999px;
+
+    --shadow-2: 0 2px 12px 2px rgba(15, 27, 60, 0.10), 0 1px 6px 0 rgba(15, 27, 60, 0.16);
+
+    --sp-1: 8px;
+    --sp-2: 16px;
+    --sp-3: 24px;
+    --sp-4: 32px;
+    --sp-6: 48px;
+    --sp-8: 64px;
+  }
+
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+
+  body {
+    font-family: 'Noto Sans JP', "Hiragino Kaku Gothic ProN", "Hiragino Sans", "Yu Gothic", "Meiryo", sans-serif;
+    color: var(--text-main);
+    background: var(--cream);
+    line-height: 1.75;
+    letter-spacing: 0.02em;
+  }
+
+  a { color: inherit; }
+
+  a:focus-visible {
+    outline: 2px solid var(--focus-blue);
+    outline-offset: 2px;
+    border-radius: 4px;
+  }
+
+  /* ===== Header ===== */
+  .legal-header {
+    background: var(--navy);
+    color: #fff;
+  }
+
+  .legal-header-inner {
+    max-width: 800px;
+    margin: 0 auto;
+    padding: var(--sp-2) var(--sp-3);
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: var(--sp-2);
+  }
+
+  .brand {
+    color: var(--gold-light);
+    font-weight: 700;
+    font-size: 18px;
+    letter-spacing: 0.08em;
+    text-decoration: none;
+  }
+
+  .back-link {
+    font-size: 13px;
+    color: rgba(255,255,255,0.85);
+    text-decoration: none;
+    border: 1px solid rgba(240, 216, 120, 0.5);
+    border-radius: 6px;
+    padding: 6px 14px;
+    white-space: nowrap;
+  }
+
+  .back-link:hover { color: var(--gold-light); border-color: var(--gold-light); }
+
+  /* ===== Main ===== */
+  main {
+    max-width: 800px;
+    margin: 0 auto;
+    padding: var(--sp-6) var(--sp-3) var(--sp-8);
+  }
+
+  h1 {
+    text-align: center;
+    font-size: clamp(22px, 4.5vw, 28px);
+    font-weight: 700;
+    line-height: 1.5;
+    color: var(--navy);
+    margin-bottom: var(--sp-4);
+  }
+
+  h1::after {
+    content: "";
+    display: block;
+    width: 48px;
+    height: 3px;
+    margin: var(--sp-2) auto 0;
+    background: var(--gold);
+    border-radius: 2px;
+  }
+
+  .legal-card {
+    background: #fff;
+    border: 1px solid #eee;
+    border-radius: var(--radius-16);
+    box-shadow: var(--shadow-2);
+    overflow: hidden;
+  }
+
+  .legal-table {
+    width: 100%;
+    border-collapse: collapse;
+    font-size: 14px;
+  }
+
+  .legal-table th,
+  .legal-table td {
+    display: block;
+    text-align: left;
+    vertical-align: top;
+  }
+
+  .legal-table th {
+    background: var(--gold-soft);
+    color: var(--navy);
+    font-weight: 700;
+    padding: 12px var(--sp-3);
+  }
+
+  .legal-table td {
+    padding: var(--sp-2) var(--sp-3);
+    color: var(--text-main);
+  }
+
+  .legal-table tr + tr th { border-top: 1px solid #eee; }
+
+  .legal-table ul {
+    list-style: none;
+    display: flex;
+    flex-direction: column;
+    gap: var(--sp-1);
+  }
+
+  .legal-table li {
+    position: relative;
+    padding-left: 1.1em;
+  }
+
+  .legal-table li::before {
+    content: "";
+    position: absolute;
+    left: 0;
+    top: 0.72em;
+    width: 6px;
+    height: 6px;
+    border-radius: 50%;
+    background: var(--gold);
+  }
+
+  .note {
+    display: block;
+    margin-top: 4px;
+    font-size: 13px;
+    color: var(--text-sub);
+  }
+
+  .price-campaign {
+    display: inline-block;
+    margin-top: 6px;
+    padding: 4px 12px;
+    border-radius: var(--radius-8);
+    background: var(--cream);
+    border: 1px solid var(--gold-soft);
+    font-weight: 700;
+    color: var(--navy);
+  }
+
+  /* ===== Footer ===== */
+  footer {
+    background: var(--navy-deep);
+    color: rgba(255,255,255,0.6);
+    text-align: center;
+    padding: var(--sp-4) var(--sp-3);
+    font-size: 12px;
+  }
+
+  footer .brand {
+    display: block;
+    font-size: 14px;
+    margin-bottom: var(--sp-1);
+  }
+
+  .footer-links {
+    margin-top: var(--sp-1);
+    font-size: 11px;
+  }
+
+  .footer-links a {
+    color: rgba(255,255,255,0.6);
+    text-decoration: underline;
+    text-underline-offset: 2px;
+  }
+
+  .footer-links a:hover { color: #fff; }
+
+  /* タブレット以上:項目名と内容を横並びの表組みに */
+  @media (min-width: 641px) {
+    .legal-table th,
+    .legal-table td {
+      display: table-cell;
+      padding: 20px var(--sp-3);
+    }
+
+    .legal-table th {
+      width: 34%;
+      border-right: 1px solid #f0e6c4;
+    }
+
+    .legal-table tr + tr th,
+    .legal-table tr + tr td { border-top: 1px solid #eee; }
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    * { transition: none !important; }
+  }
+
+  /* ===== Policy body ===== */
+  .policy-card {
+    background: #fff;
+    border: 1px solid #eee;
+    border-radius: var(--radius-16);
+    box-shadow: var(--shadow-2);
+    padding: var(--sp-4) var(--sp-3);
+    font-size: 14px;
+  }
+
+  .policy-card > p + p { margin-top: var(--sp-1); }
+
+  .policy-card section + section,
+  .policy-card > p + section { margin-top: var(--sp-4); }
+
+  .policy-card h2 {
+    font-size: 16px;
+    font-weight: 700;
+    color: var(--navy);
+    padding-left: 12px;
+    border-left: 3px solid var(--gold);
+    line-height: 1.5;
+    margin-bottom: var(--sp-1);
+  }
+
+  .policy-card ul {
+    list-style: none;
+    display: flex;
+    flex-direction: column;
+    gap: 4px;
+    margin-top: var(--sp-1);
+  }
+
+  .policy-card li {
+    position: relative;
+    padding-left: 1.1em;
+  }
+
+  .policy-card li::before {
+    content: "";
+    position: absolute;
+    left: 0;
+    top: 0.72em;
+    width: 6px;
+    height: 6px;
+    border-radius: 50%;
+    background: var(--gold);
+  }
+
+  .policy-card a { color: var(--navy); text-underline-offset: 2px; }
+
+  .policy-date {
+    margin-top: var(--sp-4);
+    text-align: right;
+    color: var(--text-sub);
+    font-size: 13px;
+  }
+
+  @media (min-width: 641px) {
+    .policy-card { padding: var(--sp-6) var(--sp-6); }
+  }
+</style>
+</head>
+<body>
+
+  <header class="legal-header">
+    <div class="legal-header-inner">
+      <a href="index.html" class="brand">REACH</a>
+      <a href="index.html" class="back-link">← トップページに戻る</a>
+    </div>
+  </header>
+
+  <main>
+    <h1>プライバシーポリシー</h1>
+
+    <div class="policy-card">
+      <p>不登校専門の家庭教師REACH(以下「当サービス」)は、お客様の個人情報を適切に取り扱うことを重要な責務と考え、個人情報の保護に関する法律その他の関係法令を遵守し、以下のとおりプライバシーポリシーを定めます。</p>
+
+      <section>
+        <h2>1. 事業者</h2>
+        <p>REACH 代表 鈴木俊太朗</p>
+      </section>
+
+      <section>
+        <h2>2. 取得する個人情報</h2>
+        <p>当サービスは、お申し込みフォーム等を通じて、以下の情報を取得します。</p>
+        <ul>
+          <li>保護者様のお名前、お子様のお名前</li>
+          <li>お子様の学年、お住まいの地域</li>
+          <li>メールアドレス、電話番号</li>
+          <li>ご相談内容など、お客様が任意に記入された情報(お子様の就学状況など、配慮を要する内容を含む場合があります)</li>
+        </ul>
+      </section>
+
+      <section>
+        <h2>3. 利用目的</h2>
+        <p>取得した個人情報は、以下の目的の範囲内で利用します。</p>
+        <ul>
+          <li>無料相談・無料体験授業の日程調整および実施</li>
+          <li>お問い合わせへの回答、ご連絡</li>
+          <li>授業の提供、講師の選定、学習計画の作成</li>
+          <li>授業料のご請求およびお支払いの確認</li>
+          <li>サービスの改善、および新たなサービスのご案内(ご希望の方のみ)</li>
+        </ul>
+      </section>
+
+      <section>
+        <h2>4. 第三者提供</h2>
+        <p>当サービスは、次の場合を除き、ご本人の同意なく個人情報を第三者に提供しません。</p>
+        <ul>
+          <li>法令に基づく場合</li>
+          <li>人の生命、身体または財産の保護のために必要であり、ご本人の同意を得ることが困難な場合</li>
+          <li>その他、法令で認められる場合</li>
+        </ul>
+      </section>
+
+      <section>
+        <h2>5. 業務委託および外国にある第三者への提供</h2>
+        <p>当サービスは、利用目的の達成に必要な範囲で、個人情報の取り扱いを外部の事業者に委託することがあります。この場合、委託先に対して必要かつ適切な監督を行います。</p>
+        <p>お申し込みフォームの送信データの受信・管理には、米国のFormspree, Inc.が提供するサービス「Formspree」を利用しており、フォームに入力された情報は同社のサーバー(米国)に保存されます。米国における個人情報保護制度については、<a href="https://www.ppc.go.jp/personalinfo/legal/kaiseihogohou/#gaikoku" target="_blank" rel="noopener">個人情報保護委員会のウェブサイト</a>をご確認ください。フォームの送信をもって、これらに同意いただいたものとします。</p>
+      </section>
+
+      <section>
+        <h2>6. 安全管理</h2>
+        <p>当サービスは、個人情報の漏えい、滅失またはき損を防止するため、アクセス権限の管理など必要かつ適切な安全管理措置を講じます。また、講師が授業のために個人情報を取り扱う場合は、適切に監督します。</p>
+      </section>
+
+      <section>
+        <h2>7. 開示・訂正・利用停止等のご請求</h2>
+        <p>ご本人またはその法定代理人から、保有個人データの利用目的の通知、開示、訂正、追加、削除、利用停止、消去、第三者提供の停止等のご請求があった場合は、ご本人確認のうえ、法令に従い遅滞なく対応します。下記のお問い合わせ窓口までご連絡ください。</p>
+      </section>
+
+      <section>
+        <h2>8. お問い合わせ窓口</h2>
+        <p>REACH 代表 鈴木俊太朗<br>メール:<a href="mailto:s.suzuki.reach@gmail.com">s.suzuki.reach@gmail.com</a></p>
+      </section>
+
+      <section>
+        <h2>9. 改定</h2>
+        <p>本ポリシーの内容は、法令の改正やサービス内容の変更等に応じて改定することがあります。改定後の内容は、本ページに掲載した時点から効力を生じます。</p>
+      </section>
+
+      <p class="policy-date">制定日:2026年10月7日</p>
+    </div>
+  </main>
+
+  <footer>
+    <a href="index.html" class="brand">REACH</a>
+    <p>&copy; 2026 REACH. All Rights Reserved.</p>
+    <p class="footer-links"><a href="legal.html">特定商取引法に基づく表記</a></p>
+  </footer>
+
+</body>
+</html>

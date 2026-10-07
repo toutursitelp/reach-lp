@@ -210,6 +210,19 @@
     margin-bottom: var(--sp-1);
   }
 
+  .footer-links {
+    margin-top: var(--sp-1);
+    font-size: 11px;
+  }
+
+  .footer-links a {
+    color: rgba(255,255,255,0.6);
+    text-decoration: underline;
+    text-underline-offset: 2px;
+  }
+
+  .footer-links a:hover { color: #fff; }
+
   /* タブレット以上:項目名と内容を横並びの表組みに */
   @media (min-width: 641px) {
     .legal-table th,
@@ -300,6 +313,7 @@
   <footer>
     <a href="index.html" class="brand">REACH</a>
     <p>&copy; 2026 REACH. All Rights Reserved.</p>
+    <p class="footer-links"><a href="privacy.html">プライバシーポリシー</a></p>
   </footer>
 
 </body>

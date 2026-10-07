@@ -4,18 +4,18 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>REACH | 不登校専門の家庭教師、あなたのペースで学びを</title>
-<meta name="description" content="REACHは不登校専門の家庭教師です。学校に行かなくても、勉強はしたい。その気持ちに本気で応えます。オンライン対応、スケジュールは都度調整、無料体験実施中。">
+<meta name="description" content="REACHは不登校専門の家庭教師です。学校に行かなくても、勉強はしたい。その気持ちに本気で応えます。対面・オンライン対応、スケジュールは都度調整、無料相談・無料体験実施中。">
 <!-- ===== OGP / Twitter Card ===== -->
 <!-- SNSは相対パスを読めないため、og:url / og:image / twitter:image は本番ドメインの絶対URLで指定 -->
 <meta property="og:title" content="REACH | 不登校専門の家庭教師 ― 学校には行かない。でも、勉強はしたい。">
-<meta property="og:description" content="高校中退から現役で慶應合格した代表による、不登校専門の家庭教師サービス。一人ひとりのペースに合わせて、本気で向き合います。オンライン対応、無料体験実施中。">
+<meta property="og:description" content="高校中退から現役で慶應合格した代表による、不登校専門の家庭教師サービス。一人ひとりのペースに合わせて、本気で向き合います。対面・オンライン対応、無料相談・無料体験実施中。">
 <meta property="og:type" content="website">
 <meta property="og:url" content="https://reach-lp.vercel.app/">
 <meta property="og:image" content="https://reach-lp.vercel.app/images/hero.jpg">
 <meta property="og:site_name" content="REACH">
 <meta name="twitter:card" content="summary_large_image">
 <meta name="twitter:title" content="REACH | 不登校専門の家庭教師 ― 学校には行かない。でも、勉強はしたい。">
-<meta name="twitter:description" content="高校中退から現役で慶應合格した代表による、不登校専門の家庭教師サービス。一人ひとりのペースに合わせて、本気で向き合います。オンライン対応、無料体験実施中。">
+<meta name="twitter:description" content="高校中退から現役で慶應合格した代表による、不登校専門の家庭教師サービス。一人ひとりのペースに合わせて、本気で向き合います。対面・オンライン対応、無料相談・無料体験実施中。">
 <meta name="twitter:image" content="https://reach-lp.vercel.app/images/hero.jpg">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -355,6 +355,12 @@
     display: flex;
     flex-wrap: wrap;
     gap: 12px;
+  }
+
+  .hero-cta-note {
+    margin-top: 10px;
+    font-size: 13px;
+    color: var(--text-sub);
   }
 
   .hero-offer {
@@ -986,6 +992,12 @@
     margin-top: 4px;
   }
 
+  .form-privacy a {
+    color: inherit;
+    text-decoration: underline;
+    text-underline-offset: 2px;
+  }
+
   /* ===== PC限定 上部固定バー(ヒーロー通過後に表示、フォーム表示中は隠す) ===== */
   .top-bar { display: none; }
 
@@ -1259,8 +1271,8 @@
         <span data-pricing-show="soldout" hidden>現在は通常料金 1時間<em class="price-accent"><span data-pricing="standard">6,000</span>円</em>でご案内しています</span>
       </p>
       <div class="top-bar-action">
-        <span class="top-bar-note">しつこいご連絡や無理な勧誘は一切いたしません。</span>
-        <a href="#apply" class="btn btn-primary">無料体験に申し込む</a>
+        <span class="top-bar-note">オンラインで30分程度。無理な勧誘は一切いたしません。</span>
+        <a href="#apply" class="btn btn-primary">まずは無料相談から</a>
       </div>
     </div>
   </div>
@@ -1281,9 +1293,10 @@
       </figure>
       <div class="hero-body">
         <div class="hero-cta">
-          <a href="#apply" class="btn btn-primary">無料体験授業に申し込む</a>
+          <a href="#apply" class="btn btn-primary">まずは無料相談から</a>
           <a href="#service" class="btn btn-outline">サービス内容を見る</a>
         </div>
+        <p class="hero-cta-note">無料相談はオンラインで30分程度です。無理な勧誘は一切いたしません。</p>
         <p class="hero-offer">
           <span data-pricing-show="open"><span data-pricing="status">先着5名限定</span>。通常1時間<span data-pricing="standard">6,000</span>円の授業料が<strong class="price-accent">ずっと<span data-pricing="price">3,000</span>円</strong>に。</span>
           <span data-pricing-show="soldout" hidden><span data-pricing="status"></span>。現在は通常料金<strong class="price-accent">1時間<span data-pricing="standard">6,000</span>円</strong>でご案内しています。</span>
@@ -1300,7 +1313,7 @@
       <p class="specialty-lead">学校に通っていない・通いづらい生徒の学びに特化した家庭教師サービスです。「学校に行けるかどうか」と「勉強ができるかどうか」は、別の話。学校の外にも、ちゃんと学べる場所をつくります。</p>
       <ul class="specialty-points">
         <li><strong>専門の講師</strong><span>不登校の生徒への指導経験がある講師が担当します</span></li>
-        <li><strong>自宅から</strong><span>オンラインなら、家から一歩も出ずに受講できます</span></li>
+        <li><strong>対面もオンラインも</strong><span>ご家庭に合わせて選べます。オンラインなら家から出ずに受講できます</span></li>
         <li><strong>自分のペースで</strong><span>スケジュールは都度調整。休んでも、また再開できます</span></li>
       </ul>
     </div>
@@ -1316,7 +1329,7 @@
       </h2>
       <p class="section-sub">
         <span data-pricing-show="open">この料金は、一度ご入会いただければ途中で上がることはありません。</span>
-        <span data-pricing-show="soldout" hidden>無料体験授業・無料相談は、引き続き受け付けています。</span>
+        <span data-pricing-show="soldout" hidden>無料相談は引き続き受け付けています。ご希望に応じて無料体験授業もご案内します。</span>
       </p>
       <div class="price-card">
         <div data-pricing-show="open">
@@ -1421,11 +1434,11 @@
           </div>
           <div>
             <dt>指導形式</dt>
-            <dd>オンライン中心。スケジュールは都度調整、固定の曜日・時間に縛られません。</dd>
+            <dd>対面・オンラインのどちらにも対応。スケジュールは都度調整、固定の曜日・時間に縛られません。</dd>
           </div>
           <div>
             <dt>保護者面談</dt>
-            <dd>塾長との面談を2か月に1回(オプション)。ご家庭と状況を共有します。</dd>
+            <dd>ご希望の方のみ、2か月に1回、代表との面談を行います。ご家庭と状況を共有します。</dd>
           </div>
         </dl>
       </div>
@@ -1440,7 +1453,7 @@
   <section class="flow" aria-labelledby="flow-heading">
     <div class="container">
       <h2 class="section-title" id="flow-heading">お申し込みの流れ</h2>
-      <p class="section-sub">最初のご相談から、無理なくお試しいただけます</p>
+      <p class="section-sub">まずは無料相談から。そのあと、ご希望に応じて無料体験授業で実際の授業をお試しいただけます</p>
       <ol class="flow-list">
         <li class="flow-item">
           <span class="flow-step">STEP 1</span>
@@ -1449,8 +1462,8 @@
         </li>
         <li class="flow-item">
           <span class="flow-step">STEP 2</span>
-          <h3>無料面談</h3>
-          <p>お子様の状況をじっくりヒアリングします。</p>
+          <h3>無料相談(面談)</h3>
+          <p>オンラインで30分程度、お子様の状況をじっくりヒアリングします。</p>
         </li>
         <li class="flow-item">
           <span class="flow-step">STEP 3</span>
@@ -1483,16 +1496,16 @@
       </div>
       <ul class="strength-more">
         <li>
-          <h3>全国どこでも受講可能</h3>
-          <p>オンライン受講なら、不登校のお子様が、家から一歩も出ずに、自分のペースで学べます。</p>
+          <h3>対面もオンラインも選べる</h3>
+          <p>ご家庭に合わせて受講スタイルを選べます。オンラインなら全国どこからでも、不登校のお子様が家から一歩も出ずに、自分のペースで学べます。</p>
         </li>
         <li>
           <h3>無理のない課金システム</h3>
           <p>授業数に応じた課金だから、自分のペースで無理なく続けられます。</p>
         </li>
         <li>
-          <h3>保護者面談オプション</h3>
-          <p>2か月に1回の面談で、生徒の状況をご家庭と共有できる安心感があります。</p>
+          <h3>ご希望の方には保護者面談も</h3>
+          <p>ご希望の方のみ、2か月に1回の面談で、お子様の状況をご家庭と共有できます。</p>
         </li>
       </ul>
     </div>
@@ -1515,7 +1528,7 @@
         <li class="case">
           <p class="case-meta">中学生</p>
           <div class="case-story">
-            <p><span class="case-label">BEFORE</span>入塾時偏差値35、学校の勉強についていけない状態</p>
+            <p><span class="case-label">BEFORE</span>学校を休みがちで授業についていけず、開始時の偏差値は35</p>
             <p><span class="case-label">AFTER</span>週1回の授業で勉強習慣と自学力が定着</p>
           </div>
           <p class="case-result">偏差値55の公立高校に合格</p>
@@ -1523,7 +1536,7 @@
         <li class="case">
           <p class="case-meta">高校2年生</p>
           <div class="case-story">
-            <p><span class="case-label">BEFORE</span>英語の学年順位が伸び悩んでいる状態</p>
+            <p><span class="case-label">BEFORE</span>学校を休みがちで授業に遅れが出て、英語の学年順位が伸び悩んでいる状態</p>
             <p><span class="case-label">AFTER</span>弱点を分析し、的確な学習プランで指導</p>
           </div>
           <p class="case-result">3か月で学年順位が100位アップ</p>
@@ -1548,7 +1561,7 @@
         </details>
         <details class="faq-item">
           <summary><span class="faq-badge faq-badge-q" aria-hidden="true">Q</span><span class="faq-q-text">家から出られない子でも続けられますか?</span><span class="faq-icon" aria-hidden="true"></span></summary>
-          <div class="faq-answer"><span class="faq-badge faq-badge-a" aria-hidden="true">A</span><p>はい。REACHは完全オンライン対応なので、全国どこからでも、家から一歩も出ずに授業を受けられます。</p></div>
+          <div class="faq-answer"><span class="faq-badge faq-badge-a" aria-hidden="true">A</span><p>はい。REACHは対面・オンラインのどちらにも対応しています。オンライン受講なら、全国どこからでも、家から一歩も出ずに授業を受けられます。</p></div>
         </details>
         <details class="faq-item">
           <summary><span class="faq-badge faq-badge-q" aria-hidden="true">Q</span><span class="faq-q-text">途中の学年からでも始められますか?</span><span class="faq-icon" aria-hidden="true"></span></summary>
@@ -1600,8 +1613,8 @@
   <!-- 9. Apply Form -->
   <section class="apply ruled" id="apply" aria-labelledby="apply-heading">
     <div class="container">
-      <h2 class="section-title" id="apply-heading">無料体験授業・無料相談はこちら</h2>
-      <p class="section-sub">お気軽にご相談ください。24時間以内にご返信いたします。</p>
+      <h2 class="section-title" id="apply-heading">まずは無料相談から</h2>
+      <p class="section-sub">無料相談はオンラインで30分程度です。24時間以内に日程調整のご連絡をいたします。<br>ご相談後、ご希望に応じて無料体験授業もご案内します。</p>
       <div class="form-card">
         <form action="https://formspree.io/f/mlgoepvo" method="POST">
           <div class="form-group">
@@ -1649,9 +1662,9 @@
             <label for="tel">電話番号<span class="opt">(任意)</span></label>
             <input type="tel" id="tel" name="電話番号" placeholder="090-1234-5678">
           </div>
-          <button type="submit" class="btn btn-primary submit-btn">無料で相談・体験授業を申し込む</button>
+          <button type="submit" class="btn btn-primary submit-btn">無料相談を申し込む</button>
           <p class="form-reassure">しつこいご連絡や無理な勧誘は一切いたしません。</p>
-          <p class="form-privacy">ご入力いただいた情報は、お問い合わせ対応の目的以外には使用いたしません。</p>
+          <p class="form-privacy">ご入力いただいた情報は、<a href="privacy.html">プライバシーポリシー</a>に基づき適切に取り扱います。内容にご同意のうえ送信してください。</p>
         </form>
       </div>
     </div>
@@ -1660,11 +1673,11 @@
   <footer>
     <div class="brand">REACH</div>
     <p>&copy; 2026 REACH. All Rights Reserved.</p>
-    <p class="footer-links"><a href="legal.html">特定商取引法に基づく表記</a></p>
+    <p class="footer-links"><a href="legal.html">特定商取引法に基づく表記</a> ・ <a href="privacy.html">プライバシーポリシー</a></p>
   </footer>
 
   <div class="sticky-cta" id="stickyCta">
-    <a href="#apply" class="btn btn-primary">無料体験授業に申し込む</a>
+    <a href="#apply" class="btn btn-primary">まずは無料相談から</a>
   </div>
 
   <script>

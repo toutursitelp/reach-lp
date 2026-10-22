@@ -1237,7 +1237,7 @@
      * ===== 料金・先着枠の設定(ここを編集するとページ全体の表示に反映されます) =====
      *
      * 【日々の運用】
-     *   先着枠(5名)が埋まったタイミングで、受付中の弾の isFull を手動で true に書き換えてください。
+     *   先着枠(3名)が埋まったタイミングで、受付中の弾の isFull を手動で true に書き換えてください。
      *     例)isFull: false → isFull: true
      *   true にすると、ページ全体が自動で「満席」表示に切り替わり、
      *   以降は通常料金(STANDARD_PRICE)でのご案内になります。
@@ -1255,7 +1255,7 @@
      *   price  … この弾の1時間あたりの料金(円)
      */
     const PRICING_TIERS = [
-      { label: "第1弾", slots: 5, isFull: false, price: 3000 }
+      { label: "第1弾", slots: 3, isFull: false, price: 3000 }
       // , { label: "第2弾", slots: 5, isFull: false, price: 5000 }
     ];
     const STANDARD_PRICE = 6000; // 通常料金(1時間あたり・円)
@@ -1274,7 +1274,7 @@
   <div class="top-bar" id="topBar" role="note" aria-label="キャンペーン特典">
     <div class="container top-bar-inner">
       <p class="top-bar-offer">
-        <span class="top-bar-status" data-pricing="status">先着5名限定</span>
+        <span class="top-bar-status" data-pricing="status">先着3名限定</span>
         <span data-pricing-show="open">ずっと<span data-pricing="half-prefix">半額の</span>1時間<em class="price-accent"><span data-pricing="price">3,000</span>円</em></span>
         <span data-pricing-show="soldout" hidden>現在は通常料金 1時間<em class="price-accent"><span data-pricing="standard">6,000</span>円</em>でご案内しています</span>
       </p>
@@ -1306,7 +1306,7 @@
         </div>
         <p class="hero-cta-note">無料相談はオンラインで30分程度です。無理な勧誘は一切いたしません。</p>
         <p class="hero-offer">
-          <span data-pricing-show="open"><span data-pricing="status">先着5名限定</span>。通常1時間<span data-pricing="standard">6,000</span>円の授業料が<strong class="price-accent">ずっと<span data-pricing="price">3,000</span>円</strong>に。</span>
+          <span data-pricing-show="open"><span data-pricing="status">先着3名限定</span>。通常1時間<span data-pricing="standard">6,000</span>円の授業料が<strong class="price-accent">ずっと<span data-pricing="price">3,000</span>円</strong>に。</span>
           <span data-pricing-show="soldout" hidden><span data-pricing="status"></span>。現在は通常料金<strong class="price-accent">1時間<span data-pricing="standard">6,000</span>円</strong>でご案内しています。</span>
           <a href="#pricing">料金を見る</a>
         </p>
@@ -1476,7 +1476,7 @@
   <!-- 6. Pricing -->
   <section class="pricing" id="pricing" aria-labelledby="pricing-heading">
     <div class="container">
-      <p class="pricing-status" data-pricing="status">先着5名限定</p>
+      <p class="pricing-status" data-pricing="status">先着3名限定</p>
       <h2 class="section-title" id="pricing-heading">
         <span data-pricing-show="open">授業料がずっと<span data-pricing="discount">半額</span>に。</span>
         <span data-pricing-show="soldout" hidden>現在は通常料金でご案内しています。</span>
@@ -1494,7 +1494,7 @@
             </div>
             <span class="price-arrow" aria-hidden="true">→</span>
             <div class="price-new">
-              <span class="price-tag">先着<span data-pricing="slots">5</span>名限定</span>
+              <span class="price-tag">先着<span data-pricing="slots">3</span>名限定</span>
               <span class="price-figure price-accent">ずっと1時間 <span data-pricing="price">3,000</span>円</span>
             </div>
           </div>
@@ -1506,7 +1506,7 @@
             </div>
             <span class="price-arrow" aria-hidden="true">→</span>
             <div class="price-new">
-              <span class="price-tag">先着<span data-pricing="slots">5</span>名特典</span>
+              <span class="price-tag">先着<span data-pricing="slots">3</span>名特典</span>
               <span class="price-figure price-accent"><span data-pricing="price-monthly">12,000</span>円/月</span>
             </div>
           </div>
@@ -1528,7 +1528,7 @@
             </div>
           </div>
           <p class="price-note">※1授業1時間、月4回受講の場合</p>
-          <p class="price-closed">先着<span data-pricing="slots">5</span>名の特別料金(1時間<span data-pricing="price">3,000</span>円)の受付は終了しました。</p>
+          <p class="price-closed">先着<span data-pricing="slots">3</span>名の特別料金(1時間<span data-pricing="price">3,000</span>円)の受付は終了しました。</p>
         </div>
       </div>
       <p class="price-ref">一般的な個別指導塾では月謝20,000円台〜、入会金も別途かかることが多い中、REACHは入会金0円からスタートできます</p>
@@ -1620,7 +1620,7 @@
   <!-- Benefit Banner(フォーム直前の1回のみ) -->
   <div class="benefit-banner" role="note" aria-label="キャンペーン特典">
     <div class="container benefit-wrap">
-      <span class="benefit-badge" data-pricing="status">先着5名限定</span>
+      <span class="benefit-badge" data-pricing="status">先着3名限定</span>
       <div class="benefit-price" data-pricing-show="open">
         <span class="benefit-price-old">通常 1時間<span data-pricing="standard">6,000</span>円</span>
         <span class="benefit-price-arrow" aria-hidden="true">→</span>

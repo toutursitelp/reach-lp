@@ -134,7 +134,7 @@
   section { padding: var(--sp-6) 0; }
 
   .section-title {
-    font-size: clamp(22px, 4.5vw, 30px);
+    font-size: clamp(22px, 4.5vw, 32px);
     font-weight: 700;
     line-height: 1.5;
     letter-spacing: 0.02em;
@@ -168,6 +168,51 @@
   }
 
   .strength .section-label { color: rgba(255,255,255,0.6); }
+
+  /* 見出しを左・中身を右に置く2列(PCのみ。モバイルは縦積み) */
+  @media (min-width: 900px) {
+    .split {
+      display: grid;
+      grid-template-columns: minmax(0, 4fr) minmax(0, 7fr);
+      column-gap: var(--sp-8);
+      align-items: start;
+    }
+    .split-head { position: sticky; top: 96px; }
+    .split-head .section-sub { margin-bottom: 0; }
+    .split-body.faq-list,
+    .split-body.form-card,
+    .split .price-card,
+    .split .price-ref { max-width: none; }
+    .split .worries-list { margin-top: 0; max-width: none; }
+  }
+
+  /* 申込フォーム横の安心ポイント */
+  .apply-points {
+    list-style: none;
+    margin: var(--sp-4) 0 var(--sp-5);
+    border-top: 1px solid var(--line);
+  }
+
+  .apply-points li {
+    display: grid;
+    grid-template-columns: 6.5em 1fr;
+    gap: var(--sp-2);
+    align-items: baseline;
+    padding: var(--sp-2) 0;
+    border-bottom: 1px solid var(--line);
+    font-size: 15px;
+    color: var(--text-sub);
+  }
+
+  .apply-points strong {
+    font-size: 15px;
+    font-weight: 700;
+    color: var(--navy);
+  }
+
+  @media (min-width: 900px) {
+    .apply-points { margin-bottom: 0; }
+  }
 
   /* ===== Worries ===== */
   .worries { background: var(--paper-white); }
@@ -1221,6 +1266,13 @@
 
   @media (min-width: 1025px) {
     section { padding: var(--sp-11) 0; }
+    .hero-inner { grid-template-columns: minmax(0, 1fr) 360px; }
+  }
+
+  /* 特典バナー: 横幅があるときは1行にまとめる */
+  @media (min-width: 641px) {
+    .benefit-wrap { flex-direction: row; align-items: center; gap: var(--sp-3); }
+    .benefit-badge { align-self: center; }
   }
 
   /* アニメーション低減設定を尊重(DADSアクセシビリティ指針) */
@@ -1316,9 +1368,12 @@
 
   <!-- Worries(保護者のお悩みに寄りそう) -->
   <section class="worries" aria-labelledby="worries-heading">
-    <div class="container">
-      <p class="section-label" aria-hidden="true">FOR PARENTS</p>
-      <h2 class="section-title" id="worries-heading">こんなお悩みはありませんか?</h2>
+    <div class="container split">
+      <div class="split-head">
+        <p class="section-label" aria-hidden="true">FOR PARENTS</p>
+        <h2 class="section-title" id="worries-heading">こんなお悩みは<br>ありませんか?</h2>
+      </div>
+      <div class="split-body">
       <ul class="worries-list">
         <li>学校に行けない日が続き、勉強の遅れが心配</li>
         <li>塾に通わせたいけれど、外に出ること自体がむずかしい</li>
@@ -1327,6 +1382,7 @@
         <li>本人のペースを大切にしてくれる先生が見つからない</li>
       </ul>
       <p class="worries-bridge">ひとつでも当てはまったら、REACHにご相談ください。<br>不登校を経験した代表が、お子様の「学びたい」を一緒に支えます。</p>
+      </div>
     </div>
   </section>
 
@@ -1475,16 +1531,20 @@
 
   <!-- 6. Pricing -->
   <section class="pricing" id="pricing" aria-labelledby="pricing-heading">
-    <div class="container">
+    <div class="container split">
+      <div class="split-head">
+      <p class="section-label" aria-hidden="true">PRICE</p>
       <p class="pricing-status" data-pricing="status">先着3名限定</p>
       <h2 class="section-title" id="pricing-heading">
-        <span data-pricing-show="open">授業料がずっと<span data-pricing="discount">半額</span>に。</span>
+        <span data-pricing-show="open">授業料が<br>ずっと<span data-pricing="discount">半額</span>に。</span>
         <span data-pricing-show="soldout" hidden>現在は通常料金でご案内しています。</span>
       </h2>
       <p class="section-sub">
         <span data-pricing-show="open">この料金は、一度ご入会いただければ途中で上がることはありません。</span>
         <span data-pricing-show="soldout" hidden>無料相談は引き続き受け付けています。ご希望に応じて無料体験授業もご案内します。</span>
       </p>
+      </div>
+      <div class="split-body">
       <div class="price-card">
         <div data-pricing-show="open">
           <div class="price-compare">
@@ -1532,6 +1592,7 @@
         </div>
       </div>
       <p class="price-ref">一般的な個別指導塾では月謝20,000円台〜、入会金も別途かかることが多い中、REACHは入会金0円からスタートできます</p>
+      </div>
     </div>
   </section>
 
@@ -1568,11 +1629,13 @@
 
   <!-- 8. FAQ -->
   <section class="faq" id="faq" aria-labelledby="faq-heading">
-    <div class="container">
-      <p class="section-label" aria-hidden="true">FAQ</p>
-      <h2 class="section-title" id="faq-heading">よくある質問</h2>
-      <p class="section-sub">気になる質問をタップすると回答が表示されます</p>
-      <div class="faq-list">
+    <div class="container split">
+      <div class="split-head">
+        <p class="section-label" aria-hidden="true">FAQ</p>
+        <h2 class="section-title" id="faq-heading">よくある質問</h2>
+        <p class="section-sub">気になる質問をタップすると回答が表示されます</p>
+      </div>
+      <div class="split-body faq-list">
         <details class="faq-item">
           <summary><span class="faq-badge faq-badge-q" aria-hidden="true">Q</span><span class="faq-q-text">対象学年は?</span><span class="faq-icon" aria-hidden="true"></span></summary>
           <div class="faq-answer"><span class="faq-badge faq-badge-a" aria-hidden="true">A</span><p>小学1年生から高校3年生まで、幅広く対応しています。</p></div>
@@ -1634,11 +1697,18 @@
 
   <!-- 9. Apply Form -->
   <section class="apply ruled" id="apply" aria-labelledby="apply-heading">
-    <div class="container">
-      <p class="section-label" aria-hidden="true">CONTACT</p>
-      <h2 class="section-title" id="apply-heading">まずは無料相談から</h2>
-      <p class="section-sub">無料相談はオンラインで30分程度です。24時間以内に日程調整のご連絡をいたします。<br>ご相談後、ご希望に応じて無料体験授業もご案内します。</p>
-      <div class="form-card">
+    <div class="container split">
+      <div class="split-head">
+        <p class="section-label" aria-hidden="true">CONTACT</p>
+        <h2 class="section-title" id="apply-heading">まずは無料相談から</h2>
+        <p class="section-sub">ご相談後、ご希望に応じて無料体験授業もご案内します。</p>
+        <ul class="apply-points">
+          <li><strong>30分</strong>オンラインで、お子様の状況をうかがいます</li>
+          <li><strong>24時間以内</strong>日程調整のご連絡をいたします</li>
+          <li><strong>勧誘なし</strong>無理な勧誘は一切いたしません</li>
+        </ul>
+      </div>
+      <div class="split-body form-card">
         <form action="https://formspree.io/f/mlgoepvo" method="POST">
           <div class="form-group">
             <label for="parent_name">保護者様のお名前<span class="req">必須</span></label>

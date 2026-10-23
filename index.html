@@ -177,7 +177,7 @@
       column-gap: var(--sp-8);
       align-items: start;
     }
-    .split-head { position: sticky; top: 136px; }
+    .split-head { position: sticky; top: 96px; }
     .split-head .section-sub { margin-bottom: 0; }
     .split-body.faq-list,
     .split-body.form-card,
@@ -1119,6 +1119,38 @@
     border-bottom-color: var(--navy);
   }
 
+  /* 右側: 特典 + 無料相談ボタン(固定CTAはこのバーに一本化) */
+  .site-nav-action {
+    display: flex;
+    align-items: center;
+    gap: var(--sp-2);
+  }
+
+  .site-nav-offer {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-end;
+    line-height: 1.35;
+    white-space: nowrap;
+  }
+
+  .site-nav-offer-status {
+    font-size: 11px;
+    color: var(--text-sub);
+  }
+
+  .site-nav-offer-price {
+    font-size: 13px;
+    font-weight: 700;
+    color: var(--navy);
+  }
+
+  .site-nav-offer .price-accent {
+    font-style: normal;
+    color: var(--navy);
+    box-shadow: inset 0 -6px 0 rgba(212, 175, 55, 0.35); /* ランプの灯りのマーカー */
+  }
+
   .site-nav .btn {
     min-height: 40px;
     padding: 8px 20px;
@@ -1126,103 +1158,35 @@
     white-space: nowrap;
   }
 
-  /* モバイル: 横にスワイプできるメニュー列だけを出す(CTAは下部固定ボタンが担当) */
+  @media (max-width: 1023px) {
+    .site-nav-offer { display: none; }
+  }
+
+  /* モバイル: 横にスワイプできるメニュー列 + 右端に小さな無料相談ボタン */
   @media (max-width: 768px) {
-    .site-nav-inner { height: auto; padding: 0; }
-    .site-nav-brand,
-    .site-nav .btn { display: none; }
+    .site-nav-inner { height: auto; padding: 0 var(--sp-2) 0 0; gap: var(--sp-1); }
+    .site-nav-brand { display: none; }
+    .site-nav nav {
+      flex: 1;
+      min-width: 0;
+      /* 右端をぼかして、横にスクロールできることを示す */
+      -webkit-mask-image: linear-gradient(90deg, #000 85%, transparent);
+      mask-image: linear-gradient(90deg, #000 85%, transparent);
+    }
     .site-nav-links {
-      width: 100%;
       overflow-x: auto;
       scrollbar-width: none;
-      padding: 0 var(--sp-2);
+      gap: var(--sp-2);
+      padding: 0 var(--sp-3) 0 var(--sp-2);
     }
     .site-nav-links::-webkit-scrollbar { display: none; }
     .site-nav-links li { flex: none; }
-  }
-
-  /* ===== PC限定 上部固定バー(ヒーロー通過後に表示、フォーム表示中は隠す) ===== */
-  .top-bar { display: none; }
-
-  @media (min-width: 769px) {
-    html { scroll-padding-top: 128px; }
-
-    .top-bar {
-      display: block;
-      position: fixed;
-      top: 64px; /* ページ内メニューの下に出す */
-      left: 0;
-      right: 0;
-      z-index: 60;
-      background: var(--navy);
-      color: #fff;
-      box-shadow: 0 1px 0 rgba(255,255,255,0.06), 0 6px 18px -12px rgba(10, 18, 48, 0.6);
-      opacity: 0;
-      visibility: hidden;
-      transition: opacity 0.4s ease, visibility 0s linear 0.4s;
+    .site-nav .btn {
+      flex: none;
+      min-height: 36px;
+      padding: 6px 14px;
+      font-size: 13px;
     }
-
-    .top-bar.is-visible {
-      opacity: 1;
-      visibility: visible;
-      transition: opacity 0.4s ease, visibility 0s;
-    }
-  }
-
-  .top-bar-inner {
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-    gap: var(--sp-3);
-    min-height: 52px;
-    padding-top: 6px;
-    padding-bottom: 6px;
-  }
-
-  .top-bar-offer {
-    font-size: 14px;
-    font-weight: 700;
-    letter-spacing: 0.04em;
-  }
-
-  .top-bar-offer em {
-    font-style: normal;
-    color: var(--gold-light);
-  }
-
-  .top-bar-action {
-    display: flex;
-    align-items: center;
-    gap: var(--sp-2);
-  }
-
-  .top-bar-note {
-    font-size: 11px;
-    color: rgba(255,255,255,0.62);
-  }
-
-  .top-bar .btn {
-    min-height: 36px;
-    padding: 6px 18px;
-    font-size: 14px;
-    white-space: nowrap;
-  }
-
-  @media (max-width: 960px) {
-    .top-bar-note { display: none; }
-  }
-
-  .top-bar-offer {
-    display: flex;
-    flex-wrap: wrap;
-    align-items: baseline;
-    gap: 2px var(--sp-2);
-  }
-
-  .top-bar-status {
-    font-size: 12px;
-    font-weight: 500;
-    color: rgba(255,255,255,0.78);
   }
 
   /* ===== 先着枠の状態表示(PRICING_TIERSから自動反映) ===== */
@@ -1250,33 +1214,8 @@
 
   /* 満席時: 価格表示をグレー系に */
   html[data-pricing-state="soldout"] .price-accent { color: var(--gray-536); }
-  html[data-pricing-state="soldout"] .top-bar .price-accent,
   html[data-pricing-state="soldout"] .benefit-banner .price-accent { color: #b3b8c4; }
   html[data-pricing-state="soldout"] .pricing-status { color: var(--gray-536); }
-
-  /* ===== Sticky mobile CTA ===== */
-  .sticky-cta {
-    display: none;
-    position: fixed;
-    left: 0;
-    right: 0;
-    bottom: 0;
-    z-index: 50;
-    padding: var(--sp-2) var(--sp-2) calc(var(--sp-2) + env(safe-area-inset-bottom, 0px));
-    background: linear-gradient(180deg, rgba(251,248,242,0) 0%, rgba(251,248,242,0.94) 35%, var(--cream) 100%);
-    transform: translateY(0);
-    transition: transform 0.25s ease;
-  }
-
-  .sticky-cta .btn { width: 100%; }
-
-  .sticky-cta.is-hidden {
-    transform: translateY(120%);
-  }
-
-  @media (max-width: 768px) {
-    .sticky-cta { display: flex; }
-  }
 
   /* ===== Footer ===== */
   footer {
@@ -1424,24 +1363,16 @@
           <li><a href="#faq"><svg viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="12" r="9.5"/><path d="M9.5 9.5a2.5 2.5 0 1 1 3.5 2.3c-.6.3-1 .9-1 1.6v.6M12 17.2v.1"/></svg>よくある質問</a></li>
         </ul>
       </nav>
-      <a href="#apply" class="btn btn-primary">無料相談</a>
-    </div>
-  </header>
-
-  <!-- PC限定 上部固定バー -->
-  <div class="top-bar" id="topBar" role="note" aria-label="キャンペーン特典">
-    <div class="container top-bar-inner">
-      <p class="top-bar-offer">
-        <span class="top-bar-status" data-pricing="status">先着3名限定</span>
-        <span data-pricing-show="open">ずっと<span data-pricing="half-prefix">半額の</span>1時間<em class="price-accent"><span data-pricing="price">3,000</span>円</em></span>
-        <span data-pricing-show="soldout" hidden>現在は通常料金 1時間<em class="price-accent"><span data-pricing="standard">6,000</span>円</em>でご案内しています</span>
-      </p>
-      <div class="top-bar-action">
-        <span class="top-bar-note">オンラインで30分程度。無理な勧誘は一切いたしません。</span>
-        <a href="#apply" class="btn btn-primary">まずは無料相談から</a>
+      <div class="site-nav-action">
+        <p class="site-nav-offer" role="note" aria-label="キャンペーン特典">
+          <span class="site-nav-offer-status" data-pricing="status">先着3名限定</span>
+          <span class="site-nav-offer-price" data-pricing-show="open">ずっと1時間<em class="price-accent"><span data-pricing="price">3,000</span>円</em></span>
+          <span class="site-nav-offer-price" data-pricing-show="soldout" hidden>通常料金 1時間<em class="price-accent"><span data-pricing="standard">6,000</span>円</em></span>
+        </p>
+        <a href="#apply" class="btn btn-primary">無料相談</a>
       </div>
     </div>
-  </div>
+  </header>
 
   <!-- 1. Hero -->
   <section class="hero ruled" aria-labelledby="hero-heading">
@@ -1875,10 +1806,6 @@
     <p class="footer-links"><a href="legal.html">特定商取引法に基づく表記</a> ・ <a href="privacy.html">プライバシーポリシー</a></p>
   </footer>
 
-  <div class="sticky-cta" id="stickyCta">
-    <a href="#apply" class="btn btn-primary">まずは無料相談から</a>
-  </div>
-
   <script>
     // 料金・先着枠の表示を PRICING_TIERS / STANDARD_PRICE(body冒頭)から一括反映
     (function () {
@@ -1913,29 +1840,6 @@
       document.querySelectorAll('[data-pricing-show]').forEach(function (el) {
         el.hidden = el.getAttribute('data-pricing-show') !== state;
       });
-    })();
-
-    // 固定CTA
-    // モバイル下部CTA: フォームが見えている間は隠す
-    // PC上部バー: ヒーローが画面外に出たら表示、フォームが見えている間は隠す
-    (function () {
-      var hero = document.querySelector('.hero');
-      var applySection = document.getElementById('apply');
-      var stickyCta = document.getElementById('stickyCta');
-      var topBar = document.getElementById('topBar');
-      if (!hero || !applySection || !('IntersectionObserver' in window)) return;
-      var heroVisible = true;
-      var applyVisible = false;
-      var observer = new IntersectionObserver(function (entries) {
-        entries.forEach(function (entry) {
-          if (entry.target === hero) heroVisible = entry.isIntersecting;
-          else applyVisible = entry.isIntersecting;
-        });
-        if (stickyCta) stickyCta.classList.toggle('is-hidden', applyVisible);
-        if (topBar) topBar.classList.toggle('is-visible', !heroVisible && !applyVisible);
-      }, { threshold: 0 });
-      observer.observe(hero);
-      observer.observe(applySection);
     })();
 
     // 代表の引用: 画面に入った瞬間に一度だけフェードイン(再発火しない)

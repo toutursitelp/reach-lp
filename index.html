@@ -67,7 +67,7 @@
 
   * { box-sizing: border-box; margin: 0; padding: 0; }
 
-  html { scroll-behavior: smooth; }
+  html { scroll-behavior: smooth; scroll-padding-top: 72px; }
 
   body {
     font-family: var(--font-sans);
@@ -177,7 +177,7 @@
       column-gap: var(--sp-8);
       align-items: start;
     }
-    .split-head { position: sticky; top: 96px; }
+    .split-head { position: sticky; top: 136px; }
     .split-head .section-sub { margin-bottom: 0; }
     .split-body.faq-list,
     .split-body.form-card,
@@ -1053,16 +1053,104 @@
     text-underline-offset: 2px;
   }
 
+  /* ===== ページ内メニュー(常に上部に固定。クリックで該当セクションへスクロール) ===== */
+  .site-nav {
+    position: sticky;
+    top: 0;
+    z-index: 70;
+    background: rgba(251, 248, 242, 0.94);
+    -webkit-backdrop-filter: blur(8px);
+    backdrop-filter: blur(8px);
+    border-bottom: 1px solid var(--line);
+  }
+
+  .site-nav-inner {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: var(--sp-3);
+    height: 64px;
+  }
+
+  .site-nav-brand {
+    font-family: var(--font-mincho);
+    font-weight: 700;
+    font-size: 20px;
+    letter-spacing: 0.1em;
+    color: var(--navy);
+    text-decoration: none;
+  }
+
+  .site-nav-links {
+    display: flex;
+    gap: var(--sp-3);
+    list-style: none;
+  }
+
+  .site-nav-links a {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 2px;
+    padding: 8px 4px 6px;
+    font-size: 12px;
+    font-weight: 500;
+    color: var(--text-sub);
+    text-decoration: none;
+    border-bottom: 2px solid transparent;
+    transition: color 0.2s ease, border-color 0.2s ease;
+  }
+
+  .site-nav-links svg {
+    width: 22px;
+    height: 22px;
+    fill: none;
+    stroke: currentColor;
+    stroke-width: 1.5;
+    stroke-linecap: round;
+    stroke-linejoin: round;
+  }
+
+  .site-nav-links a:hover { color: var(--navy); }
+
+  .site-nav-links a.is-active {
+    color: var(--navy);
+    font-weight: 700;
+    border-bottom-color: var(--navy);
+  }
+
+  .site-nav .btn {
+    min-height: 40px;
+    padding: 8px 20px;
+    font-size: 14px;
+    white-space: nowrap;
+  }
+
+  /* モバイル: 横にスワイプできるメニュー列だけを出す(CTAは下部固定ボタンが担当) */
+  @media (max-width: 768px) {
+    .site-nav-inner { height: auto; padding: 0; }
+    .site-nav-brand,
+    .site-nav .btn { display: none; }
+    .site-nav-links {
+      width: 100%;
+      overflow-x: auto;
+      scrollbar-width: none;
+      padding: 0 var(--sp-2);
+    }
+    .site-nav-links::-webkit-scrollbar { display: none; }
+    .site-nav-links li { flex: none; }
+  }
+
   /* ===== PC限定 上部固定バー(ヒーロー通過後に表示、フォーム表示中は隠す) ===== */
   .top-bar { display: none; }
 
   @media (min-width: 769px) {
-    html { scroll-padding-top: 64px; }
+    html { scroll-padding-top: 128px; }
 
     .top-bar {
       display: block;
       position: fixed;
-      top: 0;
+      top: 64px; /* ページ内メニューの下に出す */
       left: 0;
       right: 0;
       z-index: 60;
@@ -1322,6 +1410,24 @@
     .price-accent          : 価格表示。満席時はグレーに切り替わる
   -->
 
+  <!-- ページ内メニュー -->
+  <header class="site-nav">
+    <div class="container site-nav-inner">
+      <a href="#main" class="site-nav-brand">REACH</a>
+      <nav aria-label="ページ内メニュー">
+        <ul class="site-nav-links">
+          <li><a href="#strength"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 3.5l2.6 5.3 5.9.9-4.3 4.1 1 5.8L12 16.9l-5.2 2.7 1-5.8-4.3-4.1 5.9-.9z"/></svg>強み</a></li>
+          <li><a href="#results"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M4 20V4M4 20h16"/><path d="M7 15l4-4 3 3 5-6"/></svg>実績</a></li>
+          <li><a href="#service"><svg viewBox="0 0 24 24" aria-hidden="true"><rect x="4" y="3.5" width="16" height="17" rx="2"/><path d="M8 8h8M8 12h8M8 16h5"/></svg>サービス</a></li>
+          <li><a href="#pricing"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M3.5 12.5V4.5a1 1 0 0 1 1-1h8l8 8-9 9z"/><circle cx="8.5" cy="8.5" r="1.5"/></svg>料金</a></li>
+          <li><a href="#flow"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M4 19h5v-5h5V9h5V4"/></svg>流れ</a></li>
+          <li><a href="#faq"><svg viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="12" r="9.5"/><path d="M9.5 9.5a2.5 2.5 0 1 1 3.5 2.3c-.6.3-1 .9-1 1.6v.6M12 17.2v.1"/></svg>よくある質問</a></li>
+        </ul>
+      </nav>
+      <a href="#apply" class="btn btn-primary">無料相談</a>
+    </div>
+  </header>
+
   <!-- PC限定 上部固定バー -->
   <div class="top-bar" id="topBar" role="note" aria-label="キャンペーン特典">
     <div class="container top-bar-inner">
@@ -1427,7 +1533,7 @@
   </section>
 
   <!-- 3. Strengths -->
-  <section class="strength" aria-labelledby="strength-heading">
+  <section class="strength" id="strength" aria-labelledby="strength-heading">
     <div class="container">
       <p class="section-label" aria-hidden="true">STRENGTH</p>
       <h2 class="section-title" id="strength-heading">REACHの強み</h2>
@@ -1460,7 +1566,7 @@
   </section>
 
   <!-- 4. Results -->
-  <section class="results" aria-labelledby="results-heading">
+  <section class="results" id="results" aria-labelledby="results-heading">
     <div class="container">
       <p class="section-label" aria-hidden="true">RESULTS</p>
       <h2 class="section-title" id="results-heading">生徒の実績</h2>
@@ -1597,7 +1703,7 @@
   </section>
 
   <!-- 7. Flow -->
-  <section class="flow" aria-labelledby="flow-heading">
+  <section class="flow" id="flow" aria-labelledby="flow-heading">
     <div class="container">
       <p class="section-label" aria-hidden="true">FLOW</p>
       <h2 class="section-title" id="flow-heading">お申し込みの流れ</h2>
@@ -1849,6 +1955,30 @@
         });
       }, { threshold: 0.4 });
       observer.observe(quote);
+    })();
+
+    // ページ内メニュー: 今読んでいるセクションの項目に下線をつける
+    (function () {
+      var links = document.querySelectorAll('.site-nav-links a');
+      if (!links.length || !('IntersectionObserver' in window)) return;
+      var list = document.querySelector('.site-nav-links');
+      var observer = new IntersectionObserver(function (entries) {
+        entries.forEach(function (entry) {
+          if (!entry.isIntersecting) return;
+          links.forEach(function (a) {
+            var on = a.getAttribute('href') === '#' + entry.target.id;
+            a.classList.toggle('is-active', on);
+            // モバイルの横スクロール列では、選ばれた項目が見える位置まで送る
+            if (on && list.scrollWidth > list.clientWidth) {
+              list.scrollTo({ left: a.parentNode.offsetLeft - (list.clientWidth - a.offsetWidth) / 2, behavior: 'smooth' });
+            }
+          });
+        });
+      }, { rootMargin: '-45% 0px -50% 0px' });
+      links.forEach(function (a) {
+        var target = document.querySelector(a.getAttribute('href'));
+        if (target) observer.observe(target);
+      });
     })();
   </script>
 
